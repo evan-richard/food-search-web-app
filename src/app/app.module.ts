@@ -5,16 +5,15 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FoodSearchComponent, MapComponent, RestaurantListComponent, RestaurantListItemComponent } from './components';
+import { FoodSearchPageComponent, MapComponent, RestaurantListComponent, RestaurantListItemComponent } from './components';
 
 import {OverlayPanelModule} from 'primeng/overlaypanel';
-import { FoodSearchPageComponent } from './components/food-search-page/food-search-page.component';
+import { IonicModule } from '@ionic/angular';
 
 @NgModule({
   declarations: [
     AppComponent,
     MapComponent,
-    FoodSearchComponent,
     RestaurantListComponent,
     RestaurantListItemComponent,
     FoodSearchPageComponent
@@ -24,7 +23,8 @@ import { FoodSearchPageComponent } from './components/food-search-page/food-sear
     BrowserAnimationsModule,
     AppRoutingModule,
     FlexLayoutModule,
-    OverlayPanelModule
+    OverlayPanelModule,
+    IonicModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
