@@ -1,0 +1,7 @@
+<div class="container">
+    <app-restaurant-list-item *ngFor="let card of results"
+        [name]="card.name"
+        [topComment]="card.topComment"
+        [address]="card.address"
+    ></app-restaurant-list-item>
+</div>

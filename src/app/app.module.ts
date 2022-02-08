@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FoodSearchPageComponent, MapComponent, RestaurantListComponent, RestaurantListItemComponent } from './components';
+import { FoodSearchBarComponent, FoodSearchPageComponent, MapComponent, RestaurantListComponent, RestaurantListItemComponent, SidebarComponent } from './components';
 
-import {OverlayPanelModule} from 'primeng/overlaypanel';
+import {InputTextModule} from 'primeng/inputtext';
 import { IonicModule } from '@ionic/angular';
 
 @NgModule({
@@ -16,14 +17,17 @@ import { IonicModule } from '@ionic/angular';
     MapComponent,
     RestaurantListComponent,
     RestaurantListItemComponent,
-    FoodSearchPageComponent
+    FoodSearchPageComponent,
+    SidebarComponent,
+    FoodSearchBarComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    FormsModule,
     FlexLayoutModule,
-    OverlayPanelModule,
+    InputTextModule,
     IonicModule.forRoot()
   ],
   providers: [],

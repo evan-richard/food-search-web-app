@@ -1,0 +1,13 @@
+.container {
+    margin-top: 0.1rem;
+    background: white;
+    padding: 1rem 2rem;
+
+    &__header {
+        margin-top: 0;
+    }
+
+    &__address {
+        margin-top: 0.5rem;
+    }
+}

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-restaurant-list-item',
@@ -6,6 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./restaurant-list-item.component.scss']
 })
 export class RestaurantListItemComponent implements OnInit {
+
+  @Input() name: string = '';
+  @Input() topComment: string = '';
+  @Input() address: string = '';
 
   constructor() { }
 
