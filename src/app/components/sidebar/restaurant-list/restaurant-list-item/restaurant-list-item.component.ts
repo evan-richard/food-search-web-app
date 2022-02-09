@@ -8,7 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class RestaurantListItemComponent implements OnInit {
 
   @Input() name: string = '';
-  @Input() topComment: string = '';
+  @Input() topComment?: string;
   @Input() address: string = '';
 
   constructor() { }

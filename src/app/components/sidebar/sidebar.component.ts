@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { getRestaurants } from 'src/app/mocks/mock-restaurant-service.mock';
 import { RestaurantCard } from 'src/app/models';
 
 @Component({
@@ -8,43 +9,16 @@ import { RestaurantCard } from 'src/app/models';
 })
 export class SidebarComponent implements OnInit {
 
-  searchText: string = '';
   searchResults: RestaurantCard[] = [];
+
+  onFoodSearch(searchText: string) {
+    console.log(`Searching for ${searchText}`);
+    this.searchResults = getRestaurants(searchText, 20);
+  }
 
   constructor() { }
 
   ngOnInit(): void {
-    this.searchResults = [
-      {
-        name: 'Rustico',
-        topComment: 'Make sure to ask for cole slaw on top!',
-        address: '1234 Street Rd Citopolis, IP 12345',
-        rating: 8
-      },
-      {
-        name: 'The Rub',
-        topComment: 'Good but has a kick.',
-        address: '1234 Street Rd Citopolis, IP 12345',
-        rating: -5
-      },
-      {
-        name: 'PoiBoi',
-        address: '1234 Street Rd Citopolis, IP 12345',
-        rating: 36
-      },
-      {
-        name: 'Rustico',
-        topComment: 'Make sure to ask for cole slaw on top!',
-        address: '1234 Street Rd Citopolis, IP 12345',
-        rating: 0
-      },
-      {
-        name: 'Rustico',
-        topComment: 'Make sure to ask for cole slaw on top!',
-        address: '1234 Street Rd Citopolis, IP 12345',
-        rating: 0
-      }
-    ]
   }
 
 }

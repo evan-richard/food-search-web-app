@@ -1,4 +1,14 @@
-<span class="p-input-icon-left">
-    <!-- <ion-icon name="search-outline"></ion-icon> -->
-    <input type="text" pInputText [(ngModel)]="searchText" placeholder="Search">         
-</span>
+<section fxLayout="row">
+    <span class="p-input-icon-left">
+        <!-- <ion-icon name="search-outline"></ion-icon> -->
+        <input type="text" pInputText [(ngModel)]="searchText" placeholder="Search">         
+    </span>
+    <button pButton 
+        type="button"
+        label="Search"
+        icon="pi pi-search"
+        iconPos="right"
+        class="p-button-text p-button-text"
+        (click)="handleSearch()">
+    </button>
+</section>

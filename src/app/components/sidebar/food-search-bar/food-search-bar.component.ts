@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-food-search-bar',
@@ -6,11 +6,20 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./food-search-bar.component.scss']
 })
 export class FoodSearchBarComponent implements OnInit {
-  @Input() searchText: string = '';
+
+  @Output() onSearch: EventEmitter<string> = new EventEmitter<string>();
+
+  searchText: string = 'fried chicken sandwich';
+
+  handleSearch() {
+    console.log(`Sending ${this.searchText}`);
+    this.onSearch.emit(this.searchText);
+  }
 
   constructor() { }
 
   ngOnInit(): void {
+    this.handleSearch();
   }
 
 }

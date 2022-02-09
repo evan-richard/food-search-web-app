@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FoodSearchBarComponent, FoodSearchPageComponent, MapComponent, RestaurantListComponent, RestaurantListItemComponent, SidebarComponent } from './components';
 
+import {ButtonModule} from 'primeng/button';
 import {InputTextModule} from 'primeng/inputtext';
 import { IonicModule } from '@ionic/angular';
 
@@ -27,6 +28,7 @@ import { IonicModule } from '@ionic/angular';
     AppRoutingModule,
     FormsModule,
     FlexLayoutModule,
+    ButtonModule,
     InputTextModule,
     IonicModule.forRoot()
   ],
