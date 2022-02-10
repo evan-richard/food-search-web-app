@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { FoodSearchBarComponent, FoodSearchPageComponent, MapComponent, RestaurantListComponent, RestaurantListItemComponent, SidebarComponent } from './components';
 
 import {ButtonModule} from 'primeng/button';
+import {GMapModule} from 'primeng/gmap';
 import {InputTextModule} from 'primeng/inputtext';
 import { IonicModule } from '@ionic/angular';
 
@@ -29,6 +30,7 @@ import { IonicModule } from '@ionic/angular';
     FormsModule,
     FlexLayoutModule,
     ButtonModule,
+    GMapModule,
     InputTextModule,
     IonicModule.forRoot()
   ],

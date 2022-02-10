@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { getRestaurants } from 'src/app/mocks/mock-restaurant-service.mock';
+import { EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { RestaurantCard } from 'src/app/models';
 
 @Component({
@@ -9,11 +9,11 @@ import { RestaurantCard } from 'src/app/models';
 })
 export class SidebarComponent implements OnInit {
 
-  searchResults: RestaurantCard[] = [];
+  @Input() restaurantList: RestaurantCard[] = [];
+  @Output() onSearch: EventEmitter<string> = new EventEmitter<string>();
 
-  onFoodSearch(searchText: string) {
-    console.log(`Searching for ${searchText}`);
-    this.searchResults = getRestaurants(searchText, 20);
+  handleSearch(searchText: string) {
+    this.onSearch.emit(searchText);
   }
 
   constructor() { }

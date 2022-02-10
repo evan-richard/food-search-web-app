@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-food-search-bar',
@@ -12,7 +12,6 @@ export class FoodSearchBarComponent implements OnInit {
   searchText: string = 'fried chicken sandwich';
 
   handleSearch() {
-    console.log(`Sending ${this.searchText}`);
     this.onSearch.emit(this.searchText);
   }
 

@@ -8,7 +8,7 @@ import { RestaurantCard } from 'src/app/models';
 })
 export class RestaurantListComponent implements OnInit {
 
-  @Input() results: RestaurantCard[] = [];
+  @Input() restaurantList: RestaurantCard[] = [];
 
   constructor() {
   }
