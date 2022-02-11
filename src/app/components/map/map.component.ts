@@ -20,9 +20,10 @@ export class MapComponent implements OnInit, OnChanges {
 
   options: any = {
     center: { lat: 40.766581, lng: -73.976647 },
-    zoom: 12
+    zoom: 14
   };
   overlays: any[] = [];
+  infoWindow: any;
 
   // TODO: Basically, we want to save a "place" (placeId) when a user specifies they have a good food item.
   // Then, when another user is looking for that food item, we can return the list of sorted
@@ -71,7 +72,20 @@ export class MapComponent implements OnInit, OnChanges {
     // });
   }
 
-  constructor() {}
+  handleOverlayClick(event: any) {
+    let isMarker = event.overlay.getTitle != undefined;
+
+    if (isMarker) {
+        let title = event.overlay.getTitle();
+        this.infoWindow.setContent(`${title}`);
+        this.infoWindow.open(event.map, event.overlay);
+        event.map.setCenter(event.overlay.getPosition());
+    }
+}
+
+
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
@@ -80,15 +94,18 @@ export class MapComponent implements OnInit, OnChanges {
     if (this.restaurantList && this.restaurantList.length > 0) {
       this.options = {
         center: this.restaurantList[0].location,
-        zoom: 12
+        zoom: 14
       };
 
       loader.load().then(() => {
+        if (!this.infoWindow) {
+          this.infoWindow = new google.maps.InfoWindow();
+        }
         this.overlays = [];
         this.restaurantList.forEach(restaurant => {
           const marker = new google.maps.Marker({
             position: restaurant.location,
-            title: restaurant.name
+            title: `<b>${restaurant.name}</b><br></br>${restaurant.address}`
           });
           this.overlays.push(marker);
         });

@@ -10,6 +10,7 @@ export class RestaurantListItemComponent implements OnInit {
   @Input() name: string = '';
   @Input() topComment?: string;
   @Input() address: string = '';
+  @Input() rank: number = 0;
 
   constructor() { }
 

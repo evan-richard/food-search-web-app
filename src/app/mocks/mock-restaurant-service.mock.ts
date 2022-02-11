@@ -6,7 +6,7 @@ const mockRestaurantDB: { [name: string]: RestaurantCard[] } = {
           name: 'Rustico',
           topComment: 'Make sure to ask for cole slaw on top!',
           address: '1234 Street Rd Citopolis, IP 12345',
-          rating: 8,
+          rank: 8,
           location: {
             lat: 38.82147,
             lng: -77.04722
@@ -17,7 +17,7 @@ const mockRestaurantDB: { [name: string]: RestaurantCard[] } = {
           name: 'The Rub',
           topComment: 'Good but has a kick.',
           address: '1234 Street Rd Citopolis, IP 12345',
-          rating: -5,
+          rank: -5,
           location: {
             lat: 38.805262,
             lng: -77.048180
@@ -27,7 +27,7 @@ const mockRestaurantDB: { [name: string]: RestaurantCard[] } = {
         {
           name: 'PoiBoi',
           address: '1234 Street Rd Citopolis, IP 12345',
-          rating: 36,
+          rank: 36,
           location: {
             lat: 38.813960,
             lng: -77.041931
@@ -38,7 +38,7 @@ const mockRestaurantDB: { [name: string]: RestaurantCard[] } = {
           name: 'Chik-fil-a',
           topComment: 'Make sure to ask for cole slaw on top!',
           address: '1234 Street Rd Citopolis, IP 12345',
-          rating: 0,
+          rank: 0,
           location: {
             lat: 38.854241,
             lng: -77.049490
@@ -49,7 +49,7 @@ const mockRestaurantDB: { [name: string]: RestaurantCard[] } = {
           name: 'BonChon',
           topComment: 'Make sure to ask for cole slaw on top!',
           address: '1234 Street Rd Citopolis, IP 12345',
-          rating: 0,
+          rank: 0,
           location: {
             lat: 0,
             lng: 0
@@ -62,7 +62,7 @@ const mockRestaurantDB: { [name: string]: RestaurantCard[] } = {
             name: 'District Taco',
             topComment: 'Make sure to ask for cole slaw on top!',
             address: '1234 Street Rd Citopolis, IP 12345',
-            rating: -10,
+            rank: -10,
             location: {
               lat: 38.798166,
               lng: -77.048706
@@ -73,7 +73,7 @@ const mockRestaurantDB: { [name: string]: RestaurantCard[] } = {
             name: 'Taco Bell',
             topComment: 'Good but has a kick.',
             address: '1234 Street Rd Citopolis, IP 12345',
-            rating: 5,
+            rank: 5,
             location: {
               lat: 38.804844,
               lng: -77.044185
@@ -84,7 +84,7 @@ const mockRestaurantDB: { [name: string]: RestaurantCard[] } = {
             name: 'Taco & Tequila',
             topComment: 'Make sure to ask for cole slaw on top!',
             address: '1234 Street Rd Citopolis, IP 12345',
-            rating: 19,
+            rank: 19,
             location: {
               lat: 38.801686,
               lng: -77.061798
@@ -97,6 +97,7 @@ const mockRestaurantDB: { [name: string]: RestaurantCard[] } = {
 // range: distance from specified location, in miles
 export function getRestaurants(searchText: string, range: number): RestaurantCard[] {
     let formattedSearchText = searchText.trim().replace(new RegExp(' ', 'g'), '_').toLowerCase();
-    console.log(`Returning ${formattedSearchText}`);
-    return mockRestaurantDB[formattedSearchText];
+    return mockRestaurantDB[formattedSearchText].sort((restaurant1, restaurant2) =>
+      restaurant1.rank < restaurant2.rank ? 1 : -1
+    );
   }

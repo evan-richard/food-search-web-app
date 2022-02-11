@@ -1,4 +1,4 @@
 <section fxLayout="row">
-    <app-sidebar [restaurantList]="restaurantList" (onSearch)="handleSearch($event)"></app-sidebar>
+    <app-sidebar class="sidebar" [restaurantList]="restaurantList" (onSearch)="handleSearch($event)"></app-sidebar>
     <app-map [restaurantList]="restaurantList"></app-map>
 </section>

@@ -4,13 +4,17 @@
             {{ name }}
         </h2>
         <div class="container__comment">
-            "{{ topComment }}"
+            {{ topComment ? "\"" + topComment + "\"" : ''}}
         </div>
         <div class="container__address">
             {{ address }}
         </div>
     </article>
-    <article class="rank" fxLayout="column">
-        <ion-icon name="chevron-up-outline"></ion-icon>
+    <article class="container__rank-container" fxLayout="column">
+        <ion-icon name="chevron-up-outline" class="container__chevron"
+            [ngClass]="{ 'container__chevron--up-selected': true }"></ion-icon>
+        <div class="container__rank">{{ rank }}</div>
+        <ion-icon name="chevron-down-outline" class="container__chevron"
+            [ngClass]="{ 'container__chevron--down-selected': true }"></ion-icon>
     </article>
 </section>

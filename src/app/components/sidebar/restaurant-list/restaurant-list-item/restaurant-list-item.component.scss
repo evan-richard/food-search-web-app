@@ -1,7 +1,9 @@
 .container {
-    margin-top: 0.1rem;
     background: white;
     padding: 1rem 2rem;
+    height: 8rem;
+    width: 100%;
+    border-top: 1px solid black;
 
     &__header {
         margin-top: 0;
@@ -9,5 +11,25 @@
 
     &__address {
         margin-top: 0.5rem;
+    }
+
+    &__rank-container {
+        margin: auto 0;
+    }
+
+    &__rank {
+        margin: auto;
+    }
+
+    &__chevron {
+        font-size: 2rem;
+
+        &--up-selected {
+            color: green;
+        }
+
+        &--down-selected {
+            color: red;
+        }
     }
 }
