@@ -4,7 +4,7 @@ import { Loader } from "@googlemaps/js-api-loader";
 import { RestaurantCard } from 'src/app/models';
 
 const loader = new Loader({
-  apiKey: "AIzaSyAJRWH0eRAUckakb3jOgDyIRhzI3-zDuwE",
+  apiKey: "",
   version: "weekly",
   libraries: ["places"]
 });
