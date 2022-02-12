@@ -5,12 +5,29 @@
     width: 100%;
     border-top: 1px solid black;
 
+    &__text {
+        width: 18rem;
+        height: 100%;
+    }
+
     &__header {
         margin-top: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    &__comment {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     &__address {
         margin-top: 0.5rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     &__rank-container {

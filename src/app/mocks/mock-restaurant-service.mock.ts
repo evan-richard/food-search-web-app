@@ -36,7 +36,7 @@ const mockRestaurantDB: { [name: string]: RestaurantCard[] } = {
         },
         {
           name: 'Chik-fil-a',
-          topComment: 'Make sure to ask for cole slaw on top!',
+          topComment: 'Super long comment super long comment  super long comment  super long comment  super long comment  super long comment  super long comment  super long comment  super long comment  super long comment  super long comment  super long comment  super long comment  super long comment  super long comment  super long comment  super long comment  super long comment  super long comment  super long comment ',
           address: '1234 Street Rd Citopolis, IP 12345',
           rank: 0,
           location: {
