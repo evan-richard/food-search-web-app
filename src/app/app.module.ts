@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FoodSearchBarComponent, FoodSearchPageComponent, MapComponent, RecommendationOverlayComponent, RestaurantListComponent, RestaurantListItemComponent, SidebarComponent, SplashScreenComponent } from './components';
 
+import {AutoCompleteModule} from 'primeng/autocomplete';
 import {ButtonModule} from 'primeng/button';
 import {DynamicDialogModule} from 'primeng/dynamicdialog';
 import {GMapModule} from 'primeng/gmap';
@@ -32,6 +33,7 @@ import { IonicModule } from '@ionic/angular';
     AppRoutingModule,
     FormsModule,
     FlexLayoutModule,
+    AutoCompleteModule,
     ButtonModule,
     DynamicDialogModule,
     GMapModule,
