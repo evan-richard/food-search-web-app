@@ -6,7 +6,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FoodSearchBarComponent, FoodSearchPageComponent, MapComponent, RecommendationOverlayComponent, RestaurantListComponent, RestaurantListItemComponent, SidebarComponent } from './components';
+import { FoodSearchBarComponent, FoodSearchPageComponent, MapComponent, RecommendationOverlayComponent, RestaurantListComponent, RestaurantListItemComponent, SidebarComponent, SplashScreenComponent } from './components';
 
 import {ButtonModule} from 'primeng/button';
 import {DynamicDialogModule} from 'primeng/dynamicdialog';
@@ -23,7 +23,8 @@ import { IonicModule } from '@ionic/angular';
     FoodSearchPageComponent,
     SidebarComponent,
     FoodSearchBarComponent,
-    RecommendationOverlayComponent
+    RecommendationOverlayComponent,
+    SplashScreenComponent
   ],
   imports: [
     BrowserModule,

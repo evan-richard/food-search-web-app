@@ -5,3 +5,4 @@ export * from "./sidebar/food-search-bar/food-search-bar.component";
 export * from "./sidebar/restaurant-list/restaurant-list.component";
 export * from "./sidebar/restaurant-list/restaurant-list-item/restaurant-list-item.component";
 export * from "./recommendation-overlay/recommendation-overlay.component";
+export * from "./splash-screen/splash-screen.component";

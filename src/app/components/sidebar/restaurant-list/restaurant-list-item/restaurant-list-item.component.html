@@ -11,10 +11,18 @@
         </div>
     </article>
     <article class="container__rank-container" fxLayout="column">
-        <ion-icon name="chevron-up-outline" class="container__chevron"
-            [ngClass]="{ 'container__chevron--up-selected': true }"></ion-icon>
+        <p-button
+            class="vote-button"
+            [ngClass]="{ 'container__chevron--up-selected': true }"
+            icon="pi pi-chevron-up"
+            iconPos="center">
+        </p-button>
         <div class="container__rank">{{ rank }}</div>
-        <ion-icon name="chevron-down-outline" class="container__chevron"
-            [ngClass]="{ 'container__chevron--down-selected': true }"></ion-icon>
+        <p-button
+            class="vote-button"
+            [ngClass]="{ 'container__chevron--down-selected': true }"
+            icon="pi pi-chevron-down"
+            iconPos="center">
+        </p-button>
     </article>
 </section>

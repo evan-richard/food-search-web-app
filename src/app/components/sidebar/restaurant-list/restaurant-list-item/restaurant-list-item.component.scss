@@ -1,3 +1,41 @@
+::ng-deep {
+    .vote-button {
+        .p-button {
+            background: none;
+            color: black;
+            outline: none;
+            border: none;
+        }
+
+        .p-button:hover {
+            background: none;
+            color: darkgray;
+            outline: none;
+            border: none;
+        }
+
+        .p-button:enabled:hover {
+            background: none;
+            color: darkgray;
+            outline: none;
+            border: none;
+        }
+
+        .p-button:enabled:active {
+            background: none;
+            color: darkgray;
+            outline: none;
+            border: none;
+        }
+
+        .p-button:focus {
+            outline: none;
+            border: none;
+            box-shadow: none;
+        }
+    }
+}
+
 .container {
     background: white;
     padding: 1rem 2rem;
