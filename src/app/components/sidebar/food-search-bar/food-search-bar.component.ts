@@ -12,11 +12,14 @@ export class FoodSearchBarComponent implements OnInit {
   @Output() onSearch: EventEmitter<string> = new EventEmitter<string>();
 
   searchText: string = 'fried chicken sandwich';
-  buttonHover: boolean = false;
-  buttonClick: boolean = false;
+  isLoading: boolean = false;
 
   handleSearch() {
-    this.onSearch.emit(this.searchText);
+    this.isLoading = true;
+    setTimeout(() => {
+      this.onSearch.emit(this.searchText);
+      this.isLoading = false;
+    }, 1000);
   }
 
   constructor(public titleCase: TitleCasePipe) { }

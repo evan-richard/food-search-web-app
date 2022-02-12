@@ -1,21 +1,43 @@
+::ng-deep {
+    .p-button {
+        background-color: black;
+        color: white;
+        outline: none;
+        border: none;
+    }
+
+    .p-button:hover {
+        background-color: darkgray;
+        outline: none;
+        border: none;
+    }
+
+    .p-button:enabled:hover {
+        background-color: darkgray;
+        outline: none;
+        border: none;
+    }
+
+    .p-button:enabled:active {
+        background-color: darkgray;
+        outline: none;
+        border: none;
+    }
+
+    .p-button:focus {
+        outline: none;
+        border: none;
+        box-shadow: none;
+    }
+}
+
 .container {
     margin: 0 2rem;
     margin-bottom: 2rem;
 
     &__text-field {
-        height: 2rem;
+        height: 100%;
         width: 100%;
-        padding: 0 0.5rem;
         text-transform: capitalize;
-    }
-
-    &__search-button {
-        background: black;
-        color: white;
-        font-weight: bold;
-
-        &--hover {
-            background-color: darkgray;
-        }
     }
 }

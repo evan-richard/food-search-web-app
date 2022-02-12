@@ -6,13 +6,13 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FoodSearchBarComponent, FoodSearchPageComponent, MapComponent, RestaurantListComponent, RestaurantListItemComponent, SidebarComponent } from './components';
+import { FoodSearchBarComponent, FoodSearchPageComponent, MapComponent, RecommendationOverlayComponent, RestaurantListComponent, RestaurantListItemComponent, SidebarComponent } from './components';
 
 import {ButtonModule} from 'primeng/button';
+import {DynamicDialogModule} from 'primeng/dynamicdialog';
 import {GMapModule} from 'primeng/gmap';
 import {InputTextModule} from 'primeng/inputtext';
 import { IonicModule } from '@ionic/angular';
-import { TitleCasePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -22,7 +22,8 @@ import { TitleCasePipe } from '@angular/common';
     RestaurantListItemComponent,
     FoodSearchPageComponent,
     SidebarComponent,
-    FoodSearchBarComponent
+    FoodSearchBarComponent,
+    RecommendationOverlayComponent
   ],
   imports: [
     BrowserModule,
@@ -31,11 +32,13 @@ import { TitleCasePipe } from '@angular/common';
     FormsModule,
     FlexLayoutModule,
     ButtonModule,
+    DynamicDialogModule,
     GMapModule,
     InputTextModule,
     IonicModule.forRoot()
   ],
-  providers: [TitleCasePipe],
-  bootstrap: [AppComponent]
+  providers: [],
+  bootstrap: [AppComponent],
+  entryComponents: [RecommendationOverlayComponent]
 })
 export class AppModule { }

@@ -1,7 +1,8 @@
 <section class="container" fxLayout="column" fxLayoutGap="0.2rem">
     <label>Enter a food item</label>
     <article fxLayout="row" fxLayoutGap="1rem">
-        <span class="container__search-bar" fxFlex="80">
+        <span class="p-input-icon-left">
+            <i class="pi pi-search"></i>
             <input class="container__text-field"
                 type="text"
                 pInputText
@@ -9,21 +10,9 @@
                 placeholder="Search"
             >
         </span>
-        <button pButton
-            class="container__search-button"
-            [ngClass]="{
-                'container__search-button--hover': buttonHover,
-                'container__search-button--click': buttonClick
-            }"
-            fxFlex="20"
-            type="button"
-            label="Search"
-            icon="pi pi-search"
-            iconPos="right"
-            (mousedown)="buttonClick=true"
-            (mouseup)="buttonClick=false;handleSearch()"
-            (mouseenter)="buttonHover=true"
-            (mouseleave)="buttonHover=false">
-        </button>
+        <p-button label="Search"
+            [loading]="isLoading"
+            (onClick)="handleSearch()">
+        </p-button>
     </article>
 </section>
