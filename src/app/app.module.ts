@@ -12,6 +12,7 @@ import {ButtonModule} from 'primeng/button';
 import {GMapModule} from 'primeng/gmap';
 import {InputTextModule} from 'primeng/inputtext';
 import { IonicModule } from '@ionic/angular';
+import { TitleCasePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import { IonicModule } from '@ionic/angular';
     InputTextModule,
     IonicModule.forRoot()
   ],
-  providers: [],
+  providers: [TitleCasePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

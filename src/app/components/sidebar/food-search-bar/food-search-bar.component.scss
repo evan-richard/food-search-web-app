@@ -1,7 +1,21 @@
 .container {
-    margin-bottom: 2rem;
-}
-
-.p-input-icon-left {
     margin: 0 2rem;
+    margin-bottom: 2rem;
+
+    &__text-field {
+        height: 2rem;
+        width: 100%;
+        padding: 0 0.5rem;
+        text-transform: capitalize;
+    }
+
+    &__search-button {
+        background: black;
+        color: white;
+        font-weight: bold;
+
+        &--hover {
+            background-color: darkgray;
+        }
+    }
 }

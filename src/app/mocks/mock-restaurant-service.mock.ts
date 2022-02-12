@@ -4,7 +4,16 @@ const mockRestaurantDB: { [name: string]: RestaurantCard[] } = {
     "fried_chicken_sandwich": [
         {
           name: 'Rustico',
-          topComment: 'Make sure to ask for cole slaw on top!',
+          comments: [
+            {
+              text: 'Make sure to ask for cole slaw on top!',
+              likes: 5
+            },
+            {
+              text: 'Test',
+              likes: 2
+            }
+          ],
           address: '1234 Street Rd Citopolis, IP 12345',
           rank: 8,
           location: {
@@ -15,7 +24,12 @@ const mockRestaurantDB: { [name: string]: RestaurantCard[] } = {
         },
         {
           name: 'The Rub',
-          topComment: 'Good but has a kick.',
+          comments: [
+            {
+              text: 'Good but has a kick.',
+              likes: 0
+            }
+          ],
           address: '1234 Street Rd Citopolis, IP 12345',
           rank: -5,
           location: {
@@ -28,6 +42,7 @@ const mockRestaurantDB: { [name: string]: RestaurantCard[] } = {
           name: 'PoiBoi',
           address: '1234 Street Rd Citopolis, IP 12345',
           rank: 36,
+          comments: [],
           location: {
             lat: 38.813960,
             lng: -77.041931
@@ -36,7 +51,12 @@ const mockRestaurantDB: { [name: string]: RestaurantCard[] } = {
         },
         {
           name: 'Chik-fil-a',
-          topComment: 'Super long comment super long comment  super long comment  super long comment  super long comment  super long comment  super long comment  super long comment  super long comment  super long comment  super long comment  super long comment  super long comment  super long comment  super long comment  super long comment  super long comment  super long comment  super long comment  super long comment ',
+          comments: [
+            {
+              text: 'Super long comment super long comment  super long comment  super long comment  super long comment  super long comment  super long comment  super long comment  super long comment  super long comment  super long comment  super long comment  super long comment  super long comment  super long comment  super long comment  super long comment  super long comment  super long comment  super long comment ',
+              likes: 0
+            }
+          ],
           address: '1234 Street Rd Citopolis, IP 12345',
           rank: 0,
           location: {
@@ -47,7 +67,12 @@ const mockRestaurantDB: { [name: string]: RestaurantCard[] } = {
         },
         {
           name: 'BonChon',
-          topComment: 'Make sure to ask for cole slaw on top!',
+          comments: [
+            {
+              text: 'Make sure to ask for cole slaw on top!',
+              likes: 0
+            }
+          ],
           address: '1234 Street Rd Citopolis, IP 12345',
           rank: 0,
           location: {
@@ -60,7 +85,12 @@ const mockRestaurantDB: { [name: string]: RestaurantCard[] } = {
     "taco": [
         {
             name: 'District Taco',
-            topComment: 'Make sure to ask for cole slaw on top!',
+            comments: [
+              {
+                text: 'Make sure to ask for cole slaw on top!',
+                likes: 0
+              }
+            ],
             address: '1234 Street Rd Citopolis, IP 12345',
             rank: -10,
             location: {
@@ -71,7 +101,12 @@ const mockRestaurantDB: { [name: string]: RestaurantCard[] } = {
           },
           {
             name: 'Taco Bell',
-            topComment: 'Good but has a kick.',
+            comments: [
+              {
+                text: 'Make sure to ask for cole slaw on top!',
+                likes: 0
+              }
+            ],
             address: '1234 Street Rd Citopolis, IP 12345',
             rank: 5,
             location: {
@@ -82,7 +117,12 @@ const mockRestaurantDB: { [name: string]: RestaurantCard[] } = {
           },
           {
             name: 'Taco & Tequila',
-            topComment: 'Make sure to ask for cole slaw on top!',
+            comments: [
+              {
+                text: 'Make sure to ask for cole slaw on top!',
+                likes: 0
+              }
+            ],
             address: '1234 Street Rd Citopolis, IP 12345',
             rank: 19,
             location: {

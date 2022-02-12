@@ -1,7 +1,7 @@
 <div class="container">
     <app-restaurant-list-item *ngFor="let card of restaurantList"
         [name]="card.name"
-        [topComment]="card.topComment"
+        [topComment]="getTopComment(card.comments)"
         [address]="card.address"
         [rank]="card.rank"
     ></app-restaurant-list-item>
