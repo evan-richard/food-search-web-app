@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-foodsearchapp-dev-155900-authRole",
+      "UnauthRoleArn": "arn:aws:iam::569449348302:role/amplify-foodsearchapp-dev-155900-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::569449348302:role/amplify-foodsearchapp-dev-155900-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-foodsearchapp-dev-155900-deployment",
+      "UnauthRoleName": "amplify-foodsearchapp-dev-155900-unauthRole",
+      "StackName": "amplify-foodsearchapp-dev-155900",
+      "StackId": "arn:aws:cloudformation:us-east-1:569449348302:stack/amplify-foodsearchapp-dev-155900/c6865140-8d0f-11ec-b1b2-0a85688e4491",
+      "AmplifyAppId": "d2ku50tt3a5ej6"
+    }
+  }
+}

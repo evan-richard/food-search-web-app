@@ -2,10 +2,9 @@ import { Injectable } from '@angular/core';
 import { Loader } from '@googlemaps/js-api-loader';
 
 import { Observable, Subject } from 'rxjs';
-import { take } from 'rxjs/operators';
 
 const loader = new Loader({
-  apiKey: "",
+  apiKey: "AIzaSyBGzWCBHhUTCFT4itcHQPH8UNRyV5vP0y4",
   version: "weekly",
   libraries: ["places"]
 });
