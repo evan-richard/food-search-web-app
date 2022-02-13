@@ -25,15 +25,89 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
-            "aot": true,
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "**/*.svg",
+                "input": "node_modules/ionicons/dist/ionicons/svg",
+                "output": "./svg"
+              }
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/primeng/resources/themes/saga-blue/theme.css",
+              "node_modules/primeng/resources/primeng.min.css",
+              "node_modules/primeicons/primeicons.css",
+              {
+                "input": "node_modules/@ionic/angular/css/core.css"
+              },
+              {
+                "input": "node_modules/@ionic/angular/css/normalize.css"
+              },
+              {
+                "input": "node_modules/@ionic/angular/css/structure.css"
+              },
+              {
+                "input": "node_modules/@ionic/angular/css/typography.css"
+              },
+              {
+                "input": "node_modules/@ionic/angular/css/display.css"
+              },
+              {
+                "input": "node_modules/@ionic/angular/css/padding.css"
+              },
+              {
+                "input": "node_modules/@ionic/angular/css/float-elements.css"
+              },
+              {
+                "input": "node_modules/@ionic/angular/css/text-alignment.css"
+              },
+              {
+                "input": "node_modules/@ionic/angular/css/text-transformation.css"
+              },
+              {
+                "input": "node_modules/@ionic/angular/css/flex-utils.css"
+              },
+              {
+                "input": "src/theme/variables.css"
+              }
             ],
-            "scripts": []
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true,
+            "allowedCommonJsDependencies": [
+              "@aws-crypto/crc32",
+              "@aws-crypto/sha256-browser",
+              "@aws-crypto/sha256-js",
+              "crypto-js/sha256",
+              "axios",
+              "buffer",
+              "camelcase-keys",
+              "crypto-js/core",
+              "crypto-js/enc-base64",
+              "crypto-js/hmac-sha256",
+              "crypto-js/lib-typedarrays",
+              "fast-xml-parser",
+              "isomorphic-unfetch",
+              "js-cookie",
+              "lodash",
+              "lodash/get",
+              "lodash/isEmpty",
+              "lodash/isEqual",
+              "qrcode",
+              "style-dictionary/lib/utils/deepExtend",
+              "style-dictionary/lib/utils/flattenProperties",
+              "style-dictionary/lib/utils/references/usesReference",
+              "ulid",
+              "uuid",
+              "xstate/lib/actions",
+              "zen-observable"
+            ]
           },
           "configurations": {
             "production": {
@@ -63,7 +137,8 @@
                 }
               ]
             }
-          }
+          },
+          "defaultConfiguration": ""
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -91,25 +166,20 @@
             "karmaConfig": "karma.conf.js",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "**/*.svg",
+                "input": "node_modules/ionicons/dist/ionicons/svg",
+                "output": "./svg"
+              }
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/primeng/resources/themes/saga-blue/theme.css",
+              "node_modules/primeng/resources/primeng.min.css",
+              "node_modules/primeicons/primeicons.css"
             ],
             "scripts": []
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "tsconfig.app.json",
-              "tsconfig.spec.json",
-              "e2e/tsconfig.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
           }
         },
         "e2e": {
@@ -121,6 +191,30 @@
           "configurations": {
             "production": {
               "devServerTarget": "food-search-app:serve:production"
+            }
+          }
+        },
+        "ionic-cordova-serve": {
+          "builder": "@ionic/angular-toolkit:cordova-serve",
+          "options": {
+            "cordovaBuildTarget": "food-search-app:ionic-cordova-build",
+            "devServerTarget": "food-search-app:serve"
+          },
+          "configurations": {
+            "production": {
+              "cordovaBuildTarget": "food-search-app:ionic-cordova-build:production",
+              "devServerTarget": "food-search-app:serve:production"
+            }
+          }
+        },
+        "ionic-cordova-build": {
+          "builder": "@ionic/angular-toolkit:cordova-build",
+          "options": {
+            "browserTarget": "food-search-app:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "food-search-app:build:production"
             }
           }
         }

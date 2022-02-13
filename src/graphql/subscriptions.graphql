@@ -1,0 +1,322 @@
+# this is an auto generated file. This will be overwritten
+subscription OnCreateFoodItem {
+  onCreateFoodItem {
+    id
+    name
+    recommendedRestaurants {
+      items {
+        id
+        foodItemID
+        restaurantID
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateFoodItem {
+  onUpdateFoodItem {
+    id
+    name
+    recommendedRestaurants {
+      items {
+        id
+        foodItemID
+        restaurantID
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteFoodItem {
+  onDeleteFoodItem {
+    id
+    name
+    recommendedRestaurants {
+      items {
+        id
+        foodItemID
+        restaurantID
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateFoodItemRecommendations {
+  onCreateFoodItemRecommendations {
+    id
+    foodItemID
+    restaurantID
+    foodItem {
+      id
+      name
+      recommendedRestaurants {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    restaurant {
+      id
+      name
+      address
+      rank
+      lat
+      lng
+      googlePlaceId
+      recommendedFoodItems {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateFoodItemRecommendations {
+  onUpdateFoodItemRecommendations {
+    id
+    foodItemID
+    restaurantID
+    foodItem {
+      id
+      name
+      recommendedRestaurants {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    restaurant {
+      id
+      name
+      address
+      rank
+      lat
+      lng
+      googlePlaceId
+      recommendedFoodItems {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteFoodItemRecommendations {
+  onDeleteFoodItemRecommendations {
+    id
+    foodItemID
+    restaurantID
+    foodItem {
+      id
+      name
+      recommendedRestaurants {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    restaurant {
+      id
+      name
+      address
+      rank
+      lat
+      lng
+      googlePlaceId
+      recommendedFoodItems {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateRestaurant {
+  onCreateRestaurant {
+    id
+    name
+    address
+    rank
+    lat
+    lng
+    googlePlaceId
+    recommendedFoodItems {
+      items {
+        id
+        foodItemID
+        restaurantID
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateRestaurant {
+  onUpdateRestaurant {
+    id
+    name
+    address
+    rank
+    lat
+    lng
+    googlePlaceId
+    recommendedFoodItems {
+      items {
+        id
+        foodItemID
+        restaurantID
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteRestaurant {
+  onDeleteRestaurant {
+    id
+    name
+    address
+    rank
+    lat
+    lng
+    googlePlaceId
+    recommendedFoodItems {
+      items {
+        id
+        foodItemID
+        restaurantID
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateComment {
+  onCreateComment {
+    id
+    foodItemID
+    foodItem {
+      id
+      name
+      recommendedRestaurants {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    restaurantID
+    restaurant {
+      id
+      name
+      address
+      rank
+      lat
+      lng
+      googlePlaceId
+      recommendedFoodItems {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    content
+    likes
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateComment {
+  onUpdateComment {
+    id
+    foodItemID
+    foodItem {
+      id
+      name
+      recommendedRestaurants {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    restaurantID
+    restaurant {
+      id
+      name
+      address
+      rank
+      lat
+      lng
+      googlePlaceId
+      recommendedFoodItems {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    content
+    likes
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteComment {
+  onDeleteComment {
+    id
+    foodItemID
+    foodItem {
+      id
+      name
+      recommendedRestaurants {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    restaurantID
+    restaurant {
+      id
+      name
+      address
+      rank
+      lat
+      lng
+      googlePlaceId
+      recommendedFoodItems {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    content
+    likes
+    createdAt
+    updatedAt
+  }
+}

@@ -1,0 +1,28 @@
+<section class="container" fxLayout="row" fxLayoutAlign="space-between">
+    <article class="container__text" fxLayout="column">
+        <h2 class="container__header">
+            {{ name }}
+        </h2>
+        <div class="container__comment">
+            {{ topComment ? "\"" + topComment + "\"" : ''}}
+        </div>
+        <div class="container__address">
+            {{ address }}
+        </div>
+    </article>
+    <article class="container__rank-container" fxLayout="column">
+        <p-button
+            class="vote-button"
+            [ngClass]="{ 'container__chevron--up-selected': true }"
+            icon="pi pi-chevron-up"
+            iconPos="center">
+        </p-button>
+        <div class="container__rank">{{ rank }}</div>
+        <p-button
+            class="vote-button"
+            [ngClass]="{ 'container__chevron--down-selected': true }"
+            icon="pi pi-chevron-down"
+            iconPos="center">
+        </p-button>
+    </article>
+</section>

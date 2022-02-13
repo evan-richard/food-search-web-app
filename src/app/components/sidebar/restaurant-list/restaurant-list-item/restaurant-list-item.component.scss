@@ -1,0 +1,90 @@
+::ng-deep {
+    .vote-button {
+        .p-button {
+            background: none;
+            color: black;
+            outline: none;
+            border: none;
+        }
+
+        .p-button:hover {
+            background: none;
+            color: darkgray;
+            outline: none;
+            border: none;
+        }
+
+        .p-button:enabled:hover {
+            background: none;
+            color: darkgray;
+            outline: none;
+            border: none;
+        }
+
+        .p-button:enabled:active {
+            background: none;
+            color: darkgray;
+            outline: none;
+            border: none;
+        }
+
+        .p-button:focus {
+            outline: none;
+            border: none;
+            box-shadow: none;
+        }
+    }
+}
+
+.container {
+    background: white;
+    padding: 1rem 2rem;
+    height: 8rem;
+    width: 100%;
+    border-top: 1px solid black;
+
+    &__text {
+        width: 18rem;
+        height: 100%;
+    }
+
+    &__header {
+        margin-top: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    &__comment {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    &__address {
+        margin-top: 0.5rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    &__rank-container {
+        margin: auto 0;
+    }
+
+    &__rank {
+        margin: auto;
+    }
+
+    &__chevron {
+        font-size: 2rem;
+
+        &--up-selected {
+            color: green;
+        }
+
+        &--down-selected {
+            color: red;
+        }
+    }
+}

@@ -1,0 +1,4 @@
+<section class="container" fxLayout="column">
+    <app-food-search-bar (onSearch)="handleSearch($event)"></app-food-search-bar>
+    <app-restaurant-list [restaurantList]="restaurantList"></app-restaurant-list>
+</section>

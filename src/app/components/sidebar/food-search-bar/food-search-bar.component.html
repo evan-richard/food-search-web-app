@@ -1,0 +1,19 @@
+<section class="container" fxLayout="column" fxLayoutGap="0.2rem">
+    <label>Enter a food item</label>
+    <article fxLayout="row" fxLayoutGap="1rem">
+        <span class="p-input-icon-left">
+            <i class="pi pi-search"></i>
+            <input class="container__text-field"
+                type="text"
+                pInputText
+                [(ngModel)]="searchText"
+                placeholder="Search"
+            >
+        </span>
+        <p-button label="Search"
+            class="search-button"
+            [loading]="isLoading"
+            (onClick)="handleSearch()">
+        </p-button>
+    </article>
+</section>

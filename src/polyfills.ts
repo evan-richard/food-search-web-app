@@ -19,18 +19,6 @@
  */
 
 /**
- * IE11 requires the following for NgClass support on SVG elements
- */
-// import 'classlist.js';  // Run `npm install --save classlist.js`.
-
-/**
- * Web Animations `@angular/platform-browser/animations`
- * Only required if AnimationBuilder is used within the application and using IE/Edge or Safari.
- * Standard animation support in Angular DOES NOT require any polyfills (as of Angular 6.0).
- */
-// import 'web-animations-js';  // Run `npm install --save web-animations-js`.
-
-/**
  * By default, zone.js will patch all possible macroTask and DomEvents
  * user can disable parts of macroTask/DomEvents patch by setting following flags
  * because those flags need to be set before `zone.js` being loaded, and webpack
@@ -57,9 +45,22 @@
 /***************************************************************************************************
  * Zone JS is required by default for Angular itself.
  */
-import 'zone.js/dist/zone';  // Included with Angular CLI.
+import 'zone.js';  // Included with Angular CLI.
 
 
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
+
+// Angular 6+ does not include shims for 'global' or 'process' as provided in previous versions.
+// Add the following to your src/polyfills.ts file to recreate them.
+// Needed for Amplify
+(window as any).global = window;
+(window as any).process = {
+  env: { DEBUG: undefined },
+};
+
+// In order for Angular apps to work on IE11,
+// you need to add the following to your src/polyfills.ts file as well
+import 'core-js/es/typed-array';
+import 'core-js/es/object';

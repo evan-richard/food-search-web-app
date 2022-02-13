@@ -1,0 +1,5 @@
+<section fxLayout="row">
+    <button type="button" (click)="showRecommendationOverlay()" pButton icon="pi pi-info-circle" label="Show"></button>
+    <app-sidebar class="sidebar" [restaurantList]="restaurantList" (onSearch)="handleSearch($event)"></app-sidebar>
+    <app-map [restaurantList]="restaurantList"></app-map>
+</section>

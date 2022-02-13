@@ -1,0 +1,25 @@
+<section class="recommendation-overlay" fxLayout="column">
+    <p>We appreicate your support in helping to build a database of the best foods! We'd love to hear what you have to say about {{ foodSearchText }}</p>
+    <article fxLayout="row">
+        <input class="recommendation-overlay__text-field"
+            type="text"
+            pInputText
+            [(ngModel)]="foodSearchText"
+            placeholder="Pizza"
+        >
+        <p-autoComplete [(ngModel)]="restaurantSearchText"
+            [suggestions]="restaurantSearchResults"
+            (completeMethod)="handleRestaurantSearch($event)"
+        ></p-autoComplete>
+    </article>
+    <article fxLayout="row" fxLayoutGap="2rem">
+        <p-button label="Skip"
+            class="recommendation-overlay__skip-button"
+            (onClick)="handleSkip()">
+        </p-button>
+        <p-button label="Save"
+            class="recommendation-overlay__save-button"
+            (onClick)="handleSave()">
+        </p-button>
+    </article>
+</section>
