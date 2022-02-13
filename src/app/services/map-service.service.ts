@@ -4,7 +4,7 @@ import { Loader } from '@googlemaps/js-api-loader';
 import { Observable, Subject } from 'rxjs';
 
 const loader = new Loader({
-  apiKey: "AIzaSyBGzWCBHhUTCFT4itcHQPH8UNRyV5vP0y4",
+  apiKey: "",
   version: "weekly",
   libraries: ["places"]
 });
