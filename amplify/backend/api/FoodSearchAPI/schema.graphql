@@ -1,13 +1,14 @@
-type FoodItem @model {
+type FoodItem @model
+  @key(fields: ["id"])
+  @key(name: "byName", fields: ["name"]) {
   id: ID!
   name: String!
-  recommendedRestaurants: [FoodItemRecommendations] @connection(keyName: "byFoodItem", fields: ["id"])
+  recommendedRestaurants: [FoodItemRecommendation] @connection(keyName: "byFoodItem", fields: ["id"])
 }
 
 # Create a join model and disable queries as you don't need them
 # and can query through FoodItem.recommendedRestaurants and Restaurant.recommendedFoodItems
-type FoodItemRecommendations
-  @model(queries: null)
+type FoodItemRecommendation @model(queries: null)
   @key(name: "byFoodItem", fields: ["foodItemID", "restaurantID"])
   @key(name: "byRestaurant", fields: ["restaurantID", "foodItemID"]) {
   id: ID!
@@ -17,7 +18,9 @@ type FoodItemRecommendations
   restaurant: Restaurant! @connection(fields: ["restaurantID"])
 }
 
-type Restaurant @model {
+type Restaurant @model
+  @key(fields: ["id"])
+  @key(name: "byGooglePlaceId", fields: ["googlePlaceId"]) {
   id: ID!
   name: String!
   address: String!
@@ -25,10 +28,12 @@ type Restaurant @model {
   lat: Float!
   lng: Float!
   googlePlaceId: String!
-  recommendedFoodItems: [FoodItemRecommendations] @connection(keyName: "byRestaurant", fields: ["id"])
+  recommendedFoodItems: [FoodItemRecommendation] @connection(keyName: "byRestaurant", fields: ["id"])
 }
 
-type Comment @model {
+type Comment @model
+  @key(fields: ["id"])
+  @key(name: "byFoodItemAndRestaurant", fields: ["foodItemID", "restaurantID"]) {
   id: ID!
   foodItemID: ID!
   foodItem: FoodItem @connection(fields: ["foodItemID"])

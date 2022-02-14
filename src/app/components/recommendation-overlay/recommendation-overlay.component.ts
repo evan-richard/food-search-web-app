@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { takeWhile } from 'rxjs/operators';
-import { APIService, CreateFoodItemInput, CreateFoodItemRecommendationsInput, CreateRestaurantInput, MapService, Restaurant } from 'src/app/services';
+import { APIService, CreateFoodItemInput, CreateFoodItemRecommendationInput, CreateRestaurantInput, MapService, Restaurant } from 'src/app/services';
 
 @Component({
   selector: 'app-recommendation-overlay',
@@ -60,12 +60,12 @@ export class RecommendationOverlayComponent implements OnInit, OnDestroy {
     //   });
 
     // LINK RESTAURANT AND FOOD ITEM
-    // const foodItemRecommendation: CreateFoodItemRecommendationsInput = {
+    // const foodItemRecommendation: CreateFoodItemRecommendationInput = {
     //   foodItemID: "",
     //   restaurantID: ""
     // };
     // this.api
-    //   .CreateFoodItemRecommendations(foodItemRecommendation)
+    //   .CreateFoodItemRecommendation(foodItemRecommendation)
     //   .then((event) => {
     //     console.log("recommendation mapping created!");
     //   })

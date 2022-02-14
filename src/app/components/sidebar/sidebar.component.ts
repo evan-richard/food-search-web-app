@@ -1,6 +1,6 @@
 import { EventEmitter, Input } from '@angular/core';
 import { Component, OnInit, Output } from '@angular/core';
-import { RestaurantCard } from 'src/app/models';
+import { FoodItem, Restaurant } from 'src/app/services';
 
 @Component({
   selector: 'app-sidebar',
@@ -9,11 +9,11 @@ import { RestaurantCard } from 'src/app/models';
 })
 export class SidebarComponent implements OnInit {
 
-  @Input() restaurantList: RestaurantCard[] = [];
-  @Output() onSearch: EventEmitter<string> = new EventEmitter<string>();
+  @Input() restaurantList: Restaurant[] = [];
+  @Output() onSearch: EventEmitter<FoodItem> = new EventEmitter<FoodItem>();
 
-  handleSearch(searchText: string) {
-    this.onSearch.emit(searchText);
+  handleSearch(foodItem: FoodItem) {
+    this.onSearch.emit(foodItem);
   }
 
   constructor() { }

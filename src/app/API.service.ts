@@ -13,9 +13,9 @@ export type __SubscriptionContainer = {
   onCreateFoodItem: OnCreateFoodItemSubscription;
   onUpdateFoodItem: OnUpdateFoodItemSubscription;
   onDeleteFoodItem: OnDeleteFoodItemSubscription;
-  onCreateFoodItemRecommendations: OnCreateFoodItemRecommendationsSubscription;
-  onUpdateFoodItemRecommendations: OnUpdateFoodItemRecommendationsSubscription;
-  onDeleteFoodItemRecommendations: OnDeleteFoodItemRecommendationsSubscription;
+  onCreateFoodItemRecommendation: OnCreateFoodItemRecommendationSubscription;
+  onUpdateFoodItemRecommendation: OnUpdateFoodItemRecommendationSubscription;
+  onDeleteFoodItemRecommendation: OnDeleteFoodItemRecommendationSubscription;
   onCreateRestaurant: OnCreateRestaurantSubscription;
   onUpdateRestaurant: OnUpdateRestaurantSubscription;
   onDeleteRestaurant: OnDeleteRestaurantSubscription;
@@ -79,19 +79,19 @@ export type FoodItem = {
   __typename: "FoodItem";
   id: string;
   name: string;
-  recommendedRestaurants?: ModelFoodItemRecommendationsConnection | null;
+  recommendedRestaurants?: ModelFoodItemRecommendationConnection | null;
   createdAt: string;
   updatedAt: string;
 };
 
-export type ModelFoodItemRecommendationsConnection = {
-  __typename: "ModelFoodItemRecommendationsConnection";
-  items?: Array<FoodItemRecommendations | null> | null;
+export type ModelFoodItemRecommendationConnection = {
+  __typename: "ModelFoodItemRecommendationConnection";
+  items?: Array<FoodItemRecommendation | null> | null;
   nextToken?: string | null;
 };
 
-export type FoodItemRecommendations = {
-  __typename: "FoodItemRecommendations";
+export type FoodItemRecommendation = {
+  __typename: "FoodItemRecommendation";
   id: string;
   foodItemID: string;
   restaurantID: string;
@@ -110,7 +110,7 @@ export type Restaurant = {
   lat: number;
   lng: number;
   googlePlaceId: string;
-  recommendedFoodItems?: ModelFoodItemRecommendationsConnection | null;
+  recommendedFoodItems?: ModelFoodItemRecommendationConnection | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -124,18 +124,18 @@ export type DeleteFoodItemInput = {
   id: string;
 };
 
-export type CreateFoodItemRecommendationsInput = {
+export type CreateFoodItemRecommendationInput = {
   id?: string | null;
   foodItemID: string;
   restaurantID: string;
 };
 
-export type ModelFoodItemRecommendationsConditionInput = {
+export type ModelFoodItemRecommendationConditionInput = {
   foodItemID?: ModelIDInput | null;
   restaurantID?: ModelIDInput | null;
-  and?: Array<ModelFoodItemRecommendationsConditionInput | null> | null;
-  or?: Array<ModelFoodItemRecommendationsConditionInput | null> | null;
-  not?: ModelFoodItemRecommendationsConditionInput | null;
+  and?: Array<ModelFoodItemRecommendationConditionInput | null> | null;
+  or?: Array<ModelFoodItemRecommendationConditionInput | null> | null;
+  not?: ModelFoodItemRecommendationConditionInput | null;
 };
 
 export type ModelIDInput = {
@@ -154,13 +154,13 @@ export type ModelIDInput = {
   size?: ModelSizeInput | null;
 };
 
-export type UpdateFoodItemRecommendationsInput = {
+export type UpdateFoodItemRecommendationInput = {
   id: string;
   foodItemID?: string | null;
   restaurantID?: string | null;
 };
 
-export type DeleteFoodItemRecommendationsInput = {
+export type DeleteFoodItemRecommendationInput = {
   id: string;
 };
 
@@ -275,6 +275,11 @@ export type ModelFoodItemFilterInput = {
   not?: ModelFoodItemFilterInput | null;
 };
 
+export enum ModelSortDirection {
+  ASC = "ASC",
+  DESC = "DESC"
+}
+
 export type ModelFoodItemConnection = {
   __typename: "ModelFoodItemConnection";
   items?: Array<FoodItem | null> | null;
@@ -322,9 +327,9 @@ export type CreateFoodItemMutation = {
   id: string;
   name: string;
   recommendedRestaurants?: {
-    __typename: "ModelFoodItemRecommendationsConnection";
+    __typename: "ModelFoodItemRecommendationConnection";
     items?: Array<{
-      __typename: "FoodItemRecommendations";
+      __typename: "FoodItemRecommendation";
       id: string;
       foodItemID: string;
       restaurantID: string;
@@ -342,9 +347,9 @@ export type UpdateFoodItemMutation = {
   id: string;
   name: string;
   recommendedRestaurants?: {
-    __typename: "ModelFoodItemRecommendationsConnection";
+    __typename: "ModelFoodItemRecommendationConnection";
     items?: Array<{
-      __typename: "FoodItemRecommendations";
+      __typename: "FoodItemRecommendation";
       id: string;
       foodItemID: string;
       restaurantID: string;
@@ -362,9 +367,9 @@ export type DeleteFoodItemMutation = {
   id: string;
   name: string;
   recommendedRestaurants?: {
-    __typename: "ModelFoodItemRecommendationsConnection";
+    __typename: "ModelFoodItemRecommendationConnection";
     items?: Array<{
-      __typename: "FoodItemRecommendations";
+      __typename: "FoodItemRecommendation";
       id: string;
       foodItemID: string;
       restaurantID: string;
@@ -377,8 +382,8 @@ export type DeleteFoodItemMutation = {
   updatedAt: string;
 };
 
-export type CreateFoodItemRecommendationsMutation = {
-  __typename: "FoodItemRecommendations";
+export type CreateFoodItemRecommendationMutation = {
+  __typename: "FoodItemRecommendation";
   id: string;
   foodItemID: string;
   restaurantID: string;
@@ -387,7 +392,7 @@ export type CreateFoodItemRecommendationsMutation = {
     id: string;
     name: string;
     recommendedRestaurants?: {
-      __typename: "ModelFoodItemRecommendationsConnection";
+      __typename: "ModelFoodItemRecommendationConnection";
       nextToken?: string | null;
     } | null;
     createdAt: string;
@@ -403,7 +408,7 @@ export type CreateFoodItemRecommendationsMutation = {
     lng: number;
     googlePlaceId: string;
     recommendedFoodItems?: {
-      __typename: "ModelFoodItemRecommendationsConnection";
+      __typename: "ModelFoodItemRecommendationConnection";
       nextToken?: string | null;
     } | null;
     createdAt: string;
@@ -413,8 +418,8 @@ export type CreateFoodItemRecommendationsMutation = {
   updatedAt: string;
 };
 
-export type UpdateFoodItemRecommendationsMutation = {
-  __typename: "FoodItemRecommendations";
+export type UpdateFoodItemRecommendationMutation = {
+  __typename: "FoodItemRecommendation";
   id: string;
   foodItemID: string;
   restaurantID: string;
@@ -423,7 +428,7 @@ export type UpdateFoodItemRecommendationsMutation = {
     id: string;
     name: string;
     recommendedRestaurants?: {
-      __typename: "ModelFoodItemRecommendationsConnection";
+      __typename: "ModelFoodItemRecommendationConnection";
       nextToken?: string | null;
     } | null;
     createdAt: string;
@@ -439,7 +444,7 @@ export type UpdateFoodItemRecommendationsMutation = {
     lng: number;
     googlePlaceId: string;
     recommendedFoodItems?: {
-      __typename: "ModelFoodItemRecommendationsConnection";
+      __typename: "ModelFoodItemRecommendationConnection";
       nextToken?: string | null;
     } | null;
     createdAt: string;
@@ -449,8 +454,8 @@ export type UpdateFoodItemRecommendationsMutation = {
   updatedAt: string;
 };
 
-export type DeleteFoodItemRecommendationsMutation = {
-  __typename: "FoodItemRecommendations";
+export type DeleteFoodItemRecommendationMutation = {
+  __typename: "FoodItemRecommendation";
   id: string;
   foodItemID: string;
   restaurantID: string;
@@ -459,7 +464,7 @@ export type DeleteFoodItemRecommendationsMutation = {
     id: string;
     name: string;
     recommendedRestaurants?: {
-      __typename: "ModelFoodItemRecommendationsConnection";
+      __typename: "ModelFoodItemRecommendationConnection";
       nextToken?: string | null;
     } | null;
     createdAt: string;
@@ -475,7 +480,7 @@ export type DeleteFoodItemRecommendationsMutation = {
     lng: number;
     googlePlaceId: string;
     recommendedFoodItems?: {
-      __typename: "ModelFoodItemRecommendationsConnection";
+      __typename: "ModelFoodItemRecommendationConnection";
       nextToken?: string | null;
     } | null;
     createdAt: string;
@@ -495,9 +500,9 @@ export type CreateRestaurantMutation = {
   lng: number;
   googlePlaceId: string;
   recommendedFoodItems?: {
-    __typename: "ModelFoodItemRecommendationsConnection";
+    __typename: "ModelFoodItemRecommendationConnection";
     items?: Array<{
-      __typename: "FoodItemRecommendations";
+      __typename: "FoodItemRecommendation";
       id: string;
       foodItemID: string;
       restaurantID: string;
@@ -520,9 +525,9 @@ export type UpdateRestaurantMutation = {
   lng: number;
   googlePlaceId: string;
   recommendedFoodItems?: {
-    __typename: "ModelFoodItemRecommendationsConnection";
+    __typename: "ModelFoodItemRecommendationConnection";
     items?: Array<{
-      __typename: "FoodItemRecommendations";
+      __typename: "FoodItemRecommendation";
       id: string;
       foodItemID: string;
       restaurantID: string;
@@ -545,9 +550,9 @@ export type DeleteRestaurantMutation = {
   lng: number;
   googlePlaceId: string;
   recommendedFoodItems?: {
-    __typename: "ModelFoodItemRecommendationsConnection";
+    __typename: "ModelFoodItemRecommendationConnection";
     items?: Array<{
-      __typename: "FoodItemRecommendations";
+      __typename: "FoodItemRecommendation";
       id: string;
       foodItemID: string;
       restaurantID: string;
@@ -569,7 +574,7 @@ export type CreateCommentMutation = {
     id: string;
     name: string;
     recommendedRestaurants?: {
-      __typename: "ModelFoodItemRecommendationsConnection";
+      __typename: "ModelFoodItemRecommendationConnection";
       nextToken?: string | null;
     } | null;
     createdAt: string;
@@ -586,7 +591,7 @@ export type CreateCommentMutation = {
     lng: number;
     googlePlaceId: string;
     recommendedFoodItems?: {
-      __typename: "ModelFoodItemRecommendationsConnection";
+      __typename: "ModelFoodItemRecommendationConnection";
       nextToken?: string | null;
     } | null;
     createdAt: string;
@@ -607,7 +612,7 @@ export type UpdateCommentMutation = {
     id: string;
     name: string;
     recommendedRestaurants?: {
-      __typename: "ModelFoodItemRecommendationsConnection";
+      __typename: "ModelFoodItemRecommendationConnection";
       nextToken?: string | null;
     } | null;
     createdAt: string;
@@ -624,7 +629,7 @@ export type UpdateCommentMutation = {
     lng: number;
     googlePlaceId: string;
     recommendedFoodItems?: {
-      __typename: "ModelFoodItemRecommendationsConnection";
+      __typename: "ModelFoodItemRecommendationConnection";
       nextToken?: string | null;
     } | null;
     createdAt: string;
@@ -645,7 +650,7 @@ export type DeleteCommentMutation = {
     id: string;
     name: string;
     recommendedRestaurants?: {
-      __typename: "ModelFoodItemRecommendationsConnection";
+      __typename: "ModelFoodItemRecommendationConnection";
       nextToken?: string | null;
     } | null;
     createdAt: string;
@@ -662,7 +667,7 @@ export type DeleteCommentMutation = {
     lng: number;
     googlePlaceId: string;
     recommendedFoodItems?: {
-      __typename: "ModelFoodItemRecommendationsConnection";
+      __typename: "ModelFoodItemRecommendationConnection";
       nextToken?: string | null;
     } | null;
     createdAt: string;
@@ -679,9 +684,9 @@ export type GetFoodItemQuery = {
   id: string;
   name: string;
   recommendedRestaurants?: {
-    __typename: "ModelFoodItemRecommendationsConnection";
+    __typename: "ModelFoodItemRecommendationConnection";
     items?: Array<{
-      __typename: "FoodItemRecommendations";
+      __typename: "FoodItemRecommendation";
       id: string;
       foodItemID: string;
       restaurantID: string;
@@ -701,7 +706,7 @@ export type ListFoodItemsQuery = {
     id: string;
     name: string;
     recommendedRestaurants?: {
-      __typename: "ModelFoodItemRecommendationsConnection";
+      __typename: "ModelFoodItemRecommendationConnection";
       nextToken?: string | null;
     } | null;
     createdAt: string;
@@ -720,9 +725,9 @@ export type GetRestaurantQuery = {
   lng: number;
   googlePlaceId: string;
   recommendedFoodItems?: {
-    __typename: "ModelFoodItemRecommendationsConnection";
+    __typename: "ModelFoodItemRecommendationConnection";
     items?: Array<{
-      __typename: "FoodItemRecommendations";
+      __typename: "FoodItemRecommendation";
       id: string;
       foodItemID: string;
       restaurantID: string;
@@ -747,7 +752,7 @@ export type ListRestaurantsQuery = {
     lng: number;
     googlePlaceId: string;
     recommendedFoodItems?: {
-      __typename: "ModelFoodItemRecommendationsConnection";
+      __typename: "ModelFoodItemRecommendationConnection";
       nextToken?: string | null;
     } | null;
     createdAt: string;
@@ -765,7 +770,7 @@ export type GetCommentQuery = {
     id: string;
     name: string;
     recommendedRestaurants?: {
-      __typename: "ModelFoodItemRecommendationsConnection";
+      __typename: "ModelFoodItemRecommendationConnection";
       nextToken?: string | null;
     } | null;
     createdAt: string;
@@ -782,7 +787,7 @@ export type GetCommentQuery = {
     lng: number;
     googlePlaceId: string;
     recommendedFoodItems?: {
-      __typename: "ModelFoodItemRecommendationsConnection";
+      __typename: "ModelFoodItemRecommendationConnection";
       nextToken?: string | null;
     } | null;
     createdAt: string;
@@ -833,9 +838,9 @@ export type OnCreateFoodItemSubscription = {
   id: string;
   name: string;
   recommendedRestaurants?: {
-    __typename: "ModelFoodItemRecommendationsConnection";
+    __typename: "ModelFoodItemRecommendationConnection";
     items?: Array<{
-      __typename: "FoodItemRecommendations";
+      __typename: "FoodItemRecommendation";
       id: string;
       foodItemID: string;
       restaurantID: string;
@@ -853,9 +858,9 @@ export type OnUpdateFoodItemSubscription = {
   id: string;
   name: string;
   recommendedRestaurants?: {
-    __typename: "ModelFoodItemRecommendationsConnection";
+    __typename: "ModelFoodItemRecommendationConnection";
     items?: Array<{
-      __typename: "FoodItemRecommendations";
+      __typename: "FoodItemRecommendation";
       id: string;
       foodItemID: string;
       restaurantID: string;
@@ -873,9 +878,9 @@ export type OnDeleteFoodItemSubscription = {
   id: string;
   name: string;
   recommendedRestaurants?: {
-    __typename: "ModelFoodItemRecommendationsConnection";
+    __typename: "ModelFoodItemRecommendationConnection";
     items?: Array<{
-      __typename: "FoodItemRecommendations";
+      __typename: "FoodItemRecommendation";
       id: string;
       foodItemID: string;
       restaurantID: string;
@@ -888,8 +893,8 @@ export type OnDeleteFoodItemSubscription = {
   updatedAt: string;
 };
 
-export type OnCreateFoodItemRecommendationsSubscription = {
-  __typename: "FoodItemRecommendations";
+export type OnCreateFoodItemRecommendationSubscription = {
+  __typename: "FoodItemRecommendation";
   id: string;
   foodItemID: string;
   restaurantID: string;
@@ -898,7 +903,7 @@ export type OnCreateFoodItemRecommendationsSubscription = {
     id: string;
     name: string;
     recommendedRestaurants?: {
-      __typename: "ModelFoodItemRecommendationsConnection";
+      __typename: "ModelFoodItemRecommendationConnection";
       nextToken?: string | null;
     } | null;
     createdAt: string;
@@ -914,7 +919,7 @@ export type OnCreateFoodItemRecommendationsSubscription = {
     lng: number;
     googlePlaceId: string;
     recommendedFoodItems?: {
-      __typename: "ModelFoodItemRecommendationsConnection";
+      __typename: "ModelFoodItemRecommendationConnection";
       nextToken?: string | null;
     } | null;
     createdAt: string;
@@ -924,8 +929,8 @@ export type OnCreateFoodItemRecommendationsSubscription = {
   updatedAt: string;
 };
 
-export type OnUpdateFoodItemRecommendationsSubscription = {
-  __typename: "FoodItemRecommendations";
+export type OnUpdateFoodItemRecommendationSubscription = {
+  __typename: "FoodItemRecommendation";
   id: string;
   foodItemID: string;
   restaurantID: string;
@@ -934,7 +939,7 @@ export type OnUpdateFoodItemRecommendationsSubscription = {
     id: string;
     name: string;
     recommendedRestaurants?: {
-      __typename: "ModelFoodItemRecommendationsConnection";
+      __typename: "ModelFoodItemRecommendationConnection";
       nextToken?: string | null;
     } | null;
     createdAt: string;
@@ -950,7 +955,7 @@ export type OnUpdateFoodItemRecommendationsSubscription = {
     lng: number;
     googlePlaceId: string;
     recommendedFoodItems?: {
-      __typename: "ModelFoodItemRecommendationsConnection";
+      __typename: "ModelFoodItemRecommendationConnection";
       nextToken?: string | null;
     } | null;
     createdAt: string;
@@ -960,8 +965,8 @@ export type OnUpdateFoodItemRecommendationsSubscription = {
   updatedAt: string;
 };
 
-export type OnDeleteFoodItemRecommendationsSubscription = {
-  __typename: "FoodItemRecommendations";
+export type OnDeleteFoodItemRecommendationSubscription = {
+  __typename: "FoodItemRecommendation";
   id: string;
   foodItemID: string;
   restaurantID: string;
@@ -970,7 +975,7 @@ export type OnDeleteFoodItemRecommendationsSubscription = {
     id: string;
     name: string;
     recommendedRestaurants?: {
-      __typename: "ModelFoodItemRecommendationsConnection";
+      __typename: "ModelFoodItemRecommendationConnection";
       nextToken?: string | null;
     } | null;
     createdAt: string;
@@ -986,7 +991,7 @@ export type OnDeleteFoodItemRecommendationsSubscription = {
     lng: number;
     googlePlaceId: string;
     recommendedFoodItems?: {
-      __typename: "ModelFoodItemRecommendationsConnection";
+      __typename: "ModelFoodItemRecommendationConnection";
       nextToken?: string | null;
     } | null;
     createdAt: string;
@@ -1006,9 +1011,9 @@ export type OnCreateRestaurantSubscription = {
   lng: number;
   googlePlaceId: string;
   recommendedFoodItems?: {
-    __typename: "ModelFoodItemRecommendationsConnection";
+    __typename: "ModelFoodItemRecommendationConnection";
     items?: Array<{
-      __typename: "FoodItemRecommendations";
+      __typename: "FoodItemRecommendation";
       id: string;
       foodItemID: string;
       restaurantID: string;
@@ -1031,9 +1036,9 @@ export type OnUpdateRestaurantSubscription = {
   lng: number;
   googlePlaceId: string;
   recommendedFoodItems?: {
-    __typename: "ModelFoodItemRecommendationsConnection";
+    __typename: "ModelFoodItemRecommendationConnection";
     items?: Array<{
-      __typename: "FoodItemRecommendations";
+      __typename: "FoodItemRecommendation";
       id: string;
       foodItemID: string;
       restaurantID: string;
@@ -1056,9 +1061,9 @@ export type OnDeleteRestaurantSubscription = {
   lng: number;
   googlePlaceId: string;
   recommendedFoodItems?: {
-    __typename: "ModelFoodItemRecommendationsConnection";
+    __typename: "ModelFoodItemRecommendationConnection";
     items?: Array<{
-      __typename: "FoodItemRecommendations";
+      __typename: "FoodItemRecommendation";
       id: string;
       foodItemID: string;
       restaurantID: string;
@@ -1080,7 +1085,7 @@ export type OnCreateCommentSubscription = {
     id: string;
     name: string;
     recommendedRestaurants?: {
-      __typename: "ModelFoodItemRecommendationsConnection";
+      __typename: "ModelFoodItemRecommendationConnection";
       nextToken?: string | null;
     } | null;
     createdAt: string;
@@ -1097,7 +1102,7 @@ export type OnCreateCommentSubscription = {
     lng: number;
     googlePlaceId: string;
     recommendedFoodItems?: {
-      __typename: "ModelFoodItemRecommendationsConnection";
+      __typename: "ModelFoodItemRecommendationConnection";
       nextToken?: string | null;
     } | null;
     createdAt: string;
@@ -1118,7 +1123,7 @@ export type OnUpdateCommentSubscription = {
     id: string;
     name: string;
     recommendedRestaurants?: {
-      __typename: "ModelFoodItemRecommendationsConnection";
+      __typename: "ModelFoodItemRecommendationConnection";
       nextToken?: string | null;
     } | null;
     createdAt: string;
@@ -1135,7 +1140,7 @@ export type OnUpdateCommentSubscription = {
     lng: number;
     googlePlaceId: string;
     recommendedFoodItems?: {
-      __typename: "ModelFoodItemRecommendationsConnection";
+      __typename: "ModelFoodItemRecommendationConnection";
       nextToken?: string | null;
     } | null;
     createdAt: string;
@@ -1156,7 +1161,7 @@ export type OnDeleteCommentSubscription = {
     id: string;
     name: string;
     recommendedRestaurants?: {
-      __typename: "ModelFoodItemRecommendationsConnection";
+      __typename: "ModelFoodItemRecommendationConnection";
       nextToken?: string | null;
     } | null;
     createdAt: string;
@@ -1173,7 +1178,7 @@ export type OnDeleteCommentSubscription = {
     lng: number;
     googlePlaceId: string;
     recommendedFoodItems?: {
-      __typename: "ModelFoodItemRecommendationsConnection";
+      __typename: "ModelFoodItemRecommendationConnection";
       nextToken?: string | null;
     } | null;
     createdAt: string;
@@ -1297,12 +1302,12 @@ export class APIService {
     )) as any;
     return <DeleteFoodItemMutation>response.data.deleteFoodItem;
   }
-  async CreateFoodItemRecommendations(
-    input: CreateFoodItemRecommendationsInput,
-    condition?: ModelFoodItemRecommendationsConditionInput
-  ): Promise<CreateFoodItemRecommendationsMutation> {
-    const statement = `mutation CreateFoodItemRecommendations($input: CreateFoodItemRecommendationsInput!, $condition: ModelFoodItemRecommendationsConditionInput) {
-        createFoodItemRecommendations(input: $input, condition: $condition) {
+  async CreateFoodItemRecommendation(
+    input: CreateFoodItemRecommendationInput,
+    condition?: ModelFoodItemRecommendationConditionInput
+  ): Promise<CreateFoodItemRecommendationMutation> {
+    const statement = `mutation CreateFoodItemRecommendation($input: CreateFoodItemRecommendationInput!, $condition: ModelFoodItemRecommendationConditionInput) {
+        createFoodItemRecommendation(input: $input, condition: $condition) {
           __typename
           id
           foodItemID
@@ -1347,16 +1352,16 @@ export class APIService {
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
-    return <CreateFoodItemRecommendationsMutation>(
-      response.data.createFoodItemRecommendations
+    return <CreateFoodItemRecommendationMutation>(
+      response.data.createFoodItemRecommendation
     );
   }
-  async UpdateFoodItemRecommendations(
-    input: UpdateFoodItemRecommendationsInput,
-    condition?: ModelFoodItemRecommendationsConditionInput
-  ): Promise<UpdateFoodItemRecommendationsMutation> {
-    const statement = `mutation UpdateFoodItemRecommendations($input: UpdateFoodItemRecommendationsInput!, $condition: ModelFoodItemRecommendationsConditionInput) {
-        updateFoodItemRecommendations(input: $input, condition: $condition) {
+  async UpdateFoodItemRecommendation(
+    input: UpdateFoodItemRecommendationInput,
+    condition?: ModelFoodItemRecommendationConditionInput
+  ): Promise<UpdateFoodItemRecommendationMutation> {
+    const statement = `mutation UpdateFoodItemRecommendation($input: UpdateFoodItemRecommendationInput!, $condition: ModelFoodItemRecommendationConditionInput) {
+        updateFoodItemRecommendation(input: $input, condition: $condition) {
           __typename
           id
           foodItemID
@@ -1401,16 +1406,16 @@ export class APIService {
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
-    return <UpdateFoodItemRecommendationsMutation>(
-      response.data.updateFoodItemRecommendations
+    return <UpdateFoodItemRecommendationMutation>(
+      response.data.updateFoodItemRecommendation
     );
   }
-  async DeleteFoodItemRecommendations(
-    input: DeleteFoodItemRecommendationsInput,
-    condition?: ModelFoodItemRecommendationsConditionInput
-  ): Promise<DeleteFoodItemRecommendationsMutation> {
-    const statement = `mutation DeleteFoodItemRecommendations($input: DeleteFoodItemRecommendationsInput!, $condition: ModelFoodItemRecommendationsConditionInput) {
-        deleteFoodItemRecommendations(input: $input, condition: $condition) {
+  async DeleteFoodItemRecommendation(
+    input: DeleteFoodItemRecommendationInput,
+    condition?: ModelFoodItemRecommendationConditionInput
+  ): Promise<DeleteFoodItemRecommendationMutation> {
+    const statement = `mutation DeleteFoodItemRecommendation($input: DeleteFoodItemRecommendationInput!, $condition: ModelFoodItemRecommendationConditionInput) {
+        deleteFoodItemRecommendation(input: $input, condition: $condition) {
           __typename
           id
           foodItemID
@@ -1455,8 +1460,8 @@ export class APIService {
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
-    return <DeleteFoodItemRecommendationsMutation>(
-      response.data.deleteFoodItemRecommendations
+    return <DeleteFoodItemRecommendationMutation>(
+      response.data.deleteFoodItemRecommendation
     );
   }
   async CreateRestaurant(
@@ -1753,12 +1758,15 @@ export class APIService {
           recommendedRestaurants {
             __typename
             items {
-              __typename
-              id
-              foodItemID
-              restaurantID
-              createdAt
-              updatedAt
+              restaurant {
+                id
+                name
+                address
+                rank
+                lat
+                lng
+                googlePlaceId
+              }
             }
             nextToken
           }
@@ -1775,12 +1783,14 @@ export class APIService {
     return <GetFoodItemQuery>response.data.getFoodItem;
   }
   async ListFoodItems(
+    id?: string,
     filter?: ModelFoodItemFilterInput,
     limit?: number,
-    nextToken?: string
+    nextToken?: string,
+    sortDirection?: ModelSortDirection
   ): Promise<ListFoodItemsQuery> {
-    const statement = `query ListFoodItems($filter: ModelFoodItemFilterInput, $limit: Int, $nextToken: String) {
-        listFoodItems(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    const statement = `query ListFoodItems($id: ID, $filter: ModelFoodItemFilterInput, $limit: Int, $nextToken: String, $sortDirection: ModelSortDirection) {
+        listFoodItems(id: $id, filter: $filter, limit: $limit, nextToken: $nextToken, sortDirection: $sortDirection) {
           __typename
           items {
             __typename
@@ -1788,17 +1798,6 @@ export class APIService {
             name
             recommendedRestaurants {
               __typename
-              items {
-                restaurant {
-                  id
-                  name
-                  address
-                  rank
-                  lat
-                  lng
-                  googlePlaceId
-                }
-              }
               nextToken
             }
             createdAt
@@ -1808,6 +1807,9 @@ export class APIService {
         }
       }`;
     const gqlAPIServiceArguments: any = {};
+    if (id) {
+      gqlAPIServiceArguments.id = id;
+    }
     if (filter) {
       gqlAPIServiceArguments.filter = filter;
     }
@@ -1816,6 +1818,9 @@ export class APIService {
     }
     if (nextToken) {
       gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    if (sortDirection) {
+      gqlAPIServiceArguments.sortDirection = sortDirection;
     }
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
@@ -1836,12 +1841,10 @@ export class APIService {
           recommendedFoodItems {
             __typename
             items {
-              __typename
-              id
-              foodItemID
-              restaurantID
-              createdAt
-              updatedAt
+              foodItem {
+                id
+                name
+              }
             }
             nextToken
           }
@@ -1858,12 +1861,14 @@ export class APIService {
     return <GetRestaurantQuery>response.data.getRestaurant;
   }
   async ListRestaurants(
+    id?: string,
     filter?: ModelRestaurantFilterInput,
     limit?: number,
-    nextToken?: string
+    nextToken?: string,
+    sortDirection?: ModelSortDirection
   ): Promise<ListRestaurantsQuery> {
-    const statement = `query ListRestaurants($filter: ModelRestaurantFilterInput, $limit: Int, $nextToken: String) {
-        listRestaurants(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    const statement = `query ListRestaurants($id: ID, $filter: ModelRestaurantFilterInput, $limit: Int, $nextToken: String, $sortDirection: ModelSortDirection) {
+        listRestaurants(id: $id, filter: $filter, limit: $limit, nextToken: $nextToken, sortDirection: $sortDirection) {
           __typename
           items {
             __typename
@@ -1885,6 +1890,9 @@ export class APIService {
         }
       }`;
     const gqlAPIServiceArguments: any = {};
+    if (id) {
+      gqlAPIServiceArguments.id = id;
+    }
     if (filter) {
       gqlAPIServiceArguments.filter = filter;
     }
@@ -1893,6 +1901,9 @@ export class APIService {
     }
     if (nextToken) {
       gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    if (sortDirection) {
+      gqlAPIServiceArguments.sortDirection = sortDirection;
     }
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
@@ -1948,12 +1959,14 @@ export class APIService {
     return <GetCommentQuery>response.data.getComment;
   }
   async ListComments(
+    id?: string,
     filter?: ModelCommentFilterInput,
     limit?: number,
-    nextToken?: string
+    nextToken?: string,
+    sortDirection?: ModelSortDirection
   ): Promise<ListCommentsQuery> {
-    const statement = `query ListComments($filter: ModelCommentFilterInput, $limit: Int, $nextToken: String) {
-        listComments(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    const statement = `query ListComments($id: ID, $filter: ModelCommentFilterInput, $limit: Int, $nextToken: String, $sortDirection: ModelSortDirection) {
+        listComments(id: $id, filter: $filter, limit: $limit, nextToken: $nextToken, sortDirection: $sortDirection) {
           __typename
           items {
             __typename
@@ -1988,6 +2001,9 @@ export class APIService {
         }
       }`;
     const gqlAPIServiceArguments: any = {};
+    if (id) {
+      gqlAPIServiceArguments.id = id;
+    }
     if (filter) {
       gqlAPIServiceArguments.filter = filter;
     }
@@ -1996,6 +2012,9 @@ export class APIService {
     }
     if (nextToken) {
       gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    if (sortDirection) {
+      gqlAPIServiceArguments.sortDirection = sortDirection;
     }
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
@@ -2092,14 +2111,14 @@ export class APIService {
     SubscriptionResponse<Pick<__SubscriptionContainer, "onDeleteFoodItem">>
   >;
 
-  OnCreateFoodItemRecommendationsListener: Observable<
+  OnCreateFoodItemRecommendationListener: Observable<
     SubscriptionResponse<
-      Pick<__SubscriptionContainer, "onCreateFoodItemRecommendations">
+      Pick<__SubscriptionContainer, "onCreateFoodItemRecommendation">
     >
   > = API.graphql(
     graphqlOperation(
-      `subscription OnCreateFoodItemRecommendations {
-        onCreateFoodItemRecommendations {
+      `subscription OnCreateFoodItemRecommendation {
+        onCreateFoodItemRecommendation {
           __typename
           id
           foodItemID
@@ -2138,18 +2157,18 @@ export class APIService {
     )
   ) as Observable<
     SubscriptionResponse<
-      Pick<__SubscriptionContainer, "onCreateFoodItemRecommendations">
+      Pick<__SubscriptionContainer, "onCreateFoodItemRecommendation">
     >
   >;
 
-  OnUpdateFoodItemRecommendationsListener: Observable<
+  OnUpdateFoodItemRecommendationListener: Observable<
     SubscriptionResponse<
-      Pick<__SubscriptionContainer, "onUpdateFoodItemRecommendations">
+      Pick<__SubscriptionContainer, "onUpdateFoodItemRecommendation">
     >
   > = API.graphql(
     graphqlOperation(
-      `subscription OnUpdateFoodItemRecommendations {
-        onUpdateFoodItemRecommendations {
+      `subscription OnUpdateFoodItemRecommendation {
+        onUpdateFoodItemRecommendation {
           __typename
           id
           foodItemID
@@ -2188,18 +2207,18 @@ export class APIService {
     )
   ) as Observable<
     SubscriptionResponse<
-      Pick<__SubscriptionContainer, "onUpdateFoodItemRecommendations">
+      Pick<__SubscriptionContainer, "onUpdateFoodItemRecommendation">
     >
   >;
 
-  OnDeleteFoodItemRecommendationsListener: Observable<
+  OnDeleteFoodItemRecommendationListener: Observable<
     SubscriptionResponse<
-      Pick<__SubscriptionContainer, "onDeleteFoodItemRecommendations">
+      Pick<__SubscriptionContainer, "onDeleteFoodItemRecommendation">
     >
   > = API.graphql(
     graphqlOperation(
-      `subscription OnDeleteFoodItemRecommendations {
-        onDeleteFoodItemRecommendations {
+      `subscription OnDeleteFoodItemRecommendation {
+        onDeleteFoodItemRecommendation {
           __typename
           id
           foodItemID
@@ -2238,7 +2257,7 @@ export class APIService {
     )
   ) as Observable<
     SubscriptionResponse<
-      Pick<__SubscriptionContainer, "onDeleteFoodItemRecommendations">
+      Pick<__SubscriptionContainer, "onDeleteFoodItemRecommendation">
     >
   >;
 

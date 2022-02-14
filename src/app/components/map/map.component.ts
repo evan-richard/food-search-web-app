@@ -1,7 +1,6 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 
-import { RestaurantCard } from 'src/app/models';
-import { MapService } from 'src/app/services';
+import { MapService, Restaurant } from 'src/app/services';
 
 @Component({
   selector: 'app-map',
@@ -10,7 +9,7 @@ import { MapService } from 'src/app/services';
 })
 export class MapComponent implements OnInit, OnChanges {
 
-  @Input() restaurantList: RestaurantCard[] = [];
+  @Input() restaurantList: Restaurant[] = [];
 
   options: any = {
     center: { lat: 40.766581, lng: -73.976647 },
@@ -40,7 +39,7 @@ export class MapComponent implements OnInit, OnChanges {
   ngOnChanges(): void {
     if (this.restaurantList && this.restaurantList.length > 0) {
       this.options = {
-        center: this.restaurantList[0].location,
+        center: { lat: this.restaurantList[0].lat, lng: this.restaurantList[0].lng },
         zoom: 14
       };
       if (!this.infoWindow) {
@@ -49,7 +48,7 @@ export class MapComponent implements OnInit, OnChanges {
       this.overlays = [];
       this.restaurantList.forEach(restaurant => {
         const marker = new google.maps.Marker({
-          position: restaurant.location,
+          position: { lat: restaurant.lat, lng: restaurant.lng },
           title: `<b>${restaurant.name}</b><br></br>${restaurant.address}`
         });
         this.overlays.push(marker);

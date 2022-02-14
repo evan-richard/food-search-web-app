@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { DialogService } from 'primeng/dynamicdialog';
-import { getRestaurants } from 'src/app/mocks/mock-restaurant-service.mock';
-import { RestaurantCard } from 'src/app/models';
 import { RecommendationOverlayComponent } from '../recommendation-overlay/recommendation-overlay.component';
 
 import {APIService, Comment, FoodItem, ModelCommentFilterInput, Restaurant} from "src/app/services";
@@ -14,11 +12,27 @@ import {APIService, Comment, FoodItem, ModelCommentFilterInput, Restaurant} from
 })
 export class FoodSearchPageComponent implements OnInit {
 
-  restaurantList: RestaurantCard[] = [];
+  restaurantList: Restaurant[] = [];
 
-  handleSearch(searchText: string) {
-    console.log(`Searching for ${searchText}`);
-    this.restaurantList = getRestaurants(searchText, 20);
+  handleSearch(foodItem: FoodItem) {
+    console.log(`Searching for ${foodItem.name}`);
+    this.api.GetFoodItem(foodItem.id).then((event) => {
+      console.log(`Food item:`);
+      console.log((event as FoodItem));
+      console.log("Recommended restaurants:");
+      console.log((event as FoodItem).recommendedRestaurants?.items);
+      this.restaurantList = (event as FoodItem).recommendedRestaurants!.items!.map(result => {
+        return {
+          address: result!.restaurant.address,
+          googlePlaceId: result!.restaurant.googlePlaceId,
+          id: result!.restaurant.id,
+          lat: result!.restaurant.lat,
+          lng: result!.restaurant.lng,
+          name: result!.restaurant.name,
+          rank: result!.restaurant.rank
+        } as Restaurant;
+      });
+    });
   }
 
   showRecommendationOverlay() {
@@ -31,15 +45,6 @@ export class FoodSearchPageComponent implements OnInit {
   constructor(private dialogService: DialogService, private api: APIService) { }
 
   ngOnInit(): void {
-    this.api.ListFoodItems().then((event) => {
-      (event.items as FoodItem[]).forEach(foodItem => {
-        console.log(`Food item:`);
-        console.log(foodItem);
-        console.log("Recommended restaurants:");
-        console.log(foodItem.recommendedRestaurants?.items);
-      });
-    });
-
     // const commentFilter: ModelCommentFilterInput = {
     //   foodItemID: "",
     //   restaurantID: ""

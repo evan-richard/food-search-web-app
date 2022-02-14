@@ -136,7 +136,7 @@ const mockRestaurantDB: { [name: string]: RestaurantCard[] } = {
 
 // range: distance from specified location, in miles
 export function getRestaurants(searchText: string, range: number): RestaurantCard[] {
-    let formattedSearchText = searchText.trim().replace(new RegExp(' ', 'g'), '_').toLowerCase();
+    let formattedSearchText = searchText.trim().replace(new RegExp(' ', 'g'), '-').toLowerCase();
     return mockRestaurantDB[formattedSearchText].sort((restaurant1, restaurant2) =>
       restaurant1.rank < restaurant2.rank ? 1 : -1
     );

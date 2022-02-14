@@ -53,8 +53,8 @@ subscription OnDeleteFoodItem {
     updatedAt
   }
 }
-subscription OnCreateFoodItemRecommendations {
-  onCreateFoodItemRecommendations {
+subscription OnCreateFoodItemRecommendation {
+  onCreateFoodItemRecommendation {
     id
     foodItemID
     restaurantID
@@ -85,8 +85,8 @@ subscription OnCreateFoodItemRecommendations {
     updatedAt
   }
 }
-subscription OnUpdateFoodItemRecommendations {
-  onUpdateFoodItemRecommendations {
+subscription OnUpdateFoodItemRecommendation {
+  onUpdateFoodItemRecommendation {
     id
     foodItemID
     restaurantID
@@ -117,8 +117,8 @@ subscription OnUpdateFoodItemRecommendations {
     updatedAt
   }
 }
-subscription OnDeleteFoodItemRecommendations {
-  onDeleteFoodItemRecommendations {
+subscription OnDeleteFoodItemRecommendation {
+  onDeleteFoodItemRecommendation {
     id
     foodItemID
     restaurantID

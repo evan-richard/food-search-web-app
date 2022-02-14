@@ -18,11 +18,19 @@ query GetFoodItem($id: ID!) {
   }
 }
 query ListFoodItems(
+  $id: ID
   $filter: ModelFoodItemFilterInput
   $limit: Int
   $nextToken: String
+  $sortDirection: ModelSortDirection
 ) {
-  listFoodItems(filter: $filter, limit: $limit, nextToken: $nextToken) {
+  listFoodItems(
+    id: $id
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    sortDirection: $sortDirection
+  ) {
     items {
       id
       name
@@ -59,11 +67,19 @@ query GetRestaurant($id: ID!) {
   }
 }
 query ListRestaurants(
+  $id: ID
   $filter: ModelRestaurantFilterInput
   $limit: Int
   $nextToken: String
+  $sortDirection: ModelSortDirection
 ) {
-  listRestaurants(filter: $filter, limit: $limit, nextToken: $nextToken) {
+  listRestaurants(
+    id: $id
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    sortDirection: $sortDirection
+  ) {
     items {
       id
       name
@@ -116,11 +132,19 @@ query GetComment($id: ID!) {
   }
 }
 query ListComments(
+  $id: ID
   $filter: ModelCommentFilterInput
   $limit: Int
   $nextToken: String
+  $sortDirection: ModelSortDirection
 ) {
-  listComments(filter: $filter, limit: $limit, nextToken: $nextToken) {
+  listComments(
+    id: $id
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    sortDirection: $sortDirection
+  ) {
     items {
       id
       foodItemID

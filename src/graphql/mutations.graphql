@@ -62,11 +62,11 @@ mutation DeleteFoodItem(
     updatedAt
   }
 }
-mutation CreateFoodItemRecommendations(
-  $input: CreateFoodItemRecommendationsInput!
-  $condition: ModelFoodItemRecommendationsConditionInput
+mutation CreateFoodItemRecommendation(
+  $input: CreateFoodItemRecommendationInput!
+  $condition: ModelFoodItemRecommendationConditionInput
 ) {
-  createFoodItemRecommendations(input: $input, condition: $condition) {
+  createFoodItemRecommendation(input: $input, condition: $condition) {
     id
     foodItemID
     restaurantID
@@ -97,11 +97,11 @@ mutation CreateFoodItemRecommendations(
     updatedAt
   }
 }
-mutation UpdateFoodItemRecommendations(
-  $input: UpdateFoodItemRecommendationsInput!
-  $condition: ModelFoodItemRecommendationsConditionInput
+mutation UpdateFoodItemRecommendation(
+  $input: UpdateFoodItemRecommendationInput!
+  $condition: ModelFoodItemRecommendationConditionInput
 ) {
-  updateFoodItemRecommendations(input: $input, condition: $condition) {
+  updateFoodItemRecommendation(input: $input, condition: $condition) {
     id
     foodItemID
     restaurantID
@@ -132,11 +132,11 @@ mutation UpdateFoodItemRecommendations(
     updatedAt
   }
 }
-mutation DeleteFoodItemRecommendations(
-  $input: DeleteFoodItemRecommendationsInput!
-  $condition: ModelFoodItemRecommendationsConditionInput
+mutation DeleteFoodItemRecommendation(
+  $input: DeleteFoodItemRecommendationInput!
+  $condition: ModelFoodItemRecommendationConditionInput
 ) {
-  deleteFoodItemRecommendations(input: $input, condition: $condition) {
+  deleteFoodItemRecommendation(input: $input, condition: $condition) {
     id
     foodItemID
     restaurantID
