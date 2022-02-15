@@ -31,7 +31,7 @@ export class MapService {
     let results = new Subject<google.maps.places.PlaceResult[]>();
     var request = {
       query: searchText,
-      fields: ['name', 'geometry'],
+      fields: ['name', 'geometry', 'formatted_address'],
     };
 
     let searchResults: google.maps.places.PlaceResult[] = [];

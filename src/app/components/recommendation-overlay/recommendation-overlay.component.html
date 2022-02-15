@@ -1,18 +1,33 @@
-<section class="recommendation-overlay" fxLayout="column">
-    <p>We appreicate your support in helping to build a database of the best foods! We'd love to hear what you have to say about {{ foodSearchText }}</p>
-    <article fxLayout="row">
-        <input class="recommendation-overlay__text-field"
-            type="text"
-            pInputText
-            [(ngModel)]="foodSearchText"
-            placeholder="Pizza"
-        >
-        <p-autoComplete [(ngModel)]="restaurantSearchText"
-            [suggestions]="restaurantSearchResults"
-            (completeMethod)="handleRestaurantSearch($event)"
-        ></p-autoComplete>
+<section class="recommendation-overlay" fxLayout="column" fxLayoutGap="1rem">
+    <p class="recommendation-overlay__paragraph">We appreciate your support in building the world's largest database of great food! This website is not possible without you and your taste buds.</p>
+    <p class="recommendation-overlay__paragraph">We'd love to hear your favorite spot for...</p>
+    <input class="recommendation-overlay__text-field"
+        type="text"
+        pInputText
+        [(ngModel)]="foodSearchText"
+        placeholder="Pizza"
+    >
+    <article class="recommendation-overlay__map-container" fxLayout="row" fxLayoutGap="2rem">
+        <span class="p-fluid recommendation-overlay__autocomplete" fxLayout="column" fxLayoutGap="1rem">
+            <p class="recommendation-overlay__paragraph">Search for a restaurant</p>
+            <p-autoComplete
+                [(ngModel)]="selectedRestaurant"
+                [suggestions]="restaurantSearchResults"
+                [forceSelection]="true"
+                [delay]="1000"
+                (completeMethod)="handleRestaurantSearch($event)"
+                (onSelect)="handleRestaurantSelect($event)"
+            >
+                <ng-template let-restaurant pTemplate="item">
+                    <div class="recommendation-overlay__autocomplete-restaurant-name">{{ restaurant.name ?? '' }}</div>
+                    <div class="recommendation-overlay__autocomplete-restaurant-address">{{ restaurant.formatted_address ?? '' }}</div>
+                </ng-template>
+            </p-autoComplete>
+        </span>
+        <app-map class="recommendation-overlay__map"></app-map>
     </article>
     <article fxLayout="row" fxLayoutGap="2rem">
+        <span fxFlex></span>
         <p-button label="Skip"
             class="recommendation-overlay__skip-button"
             (onClick)="handleSkip()">

@@ -11,17 +11,20 @@ export class RecommendationOverlayComponent implements OnInit, OnDestroy {
 
   isComponentAlive: boolean = false;
   foodSearchText: string = 'Pizza';
-  restaurantSearchText: string = '';
-  restaurantSearchResults: string[] = [];
+  selectedRestaurant: string = '';
+  restaurantSearchResults: google.maps.places.PlaceResult[] = [];
 
   handleRestaurantSearch(event: any) {
     this.mapService.getRestaurantsFromQuery(event.query)
       .pipe(takeWhile(() => this.isComponentAlive))
       .subscribe(results => {
-        this.restaurantSearchResults = results.map((placeResult: google.maps.places.PlaceResult) =>
-          placeResult.name ?? ''
-        );
+        this.restaurantSearchResults = results;
       });
+  }
+
+  handleRestaurantSelect(event: any) {
+    this.selectedRestaurant = event.name ?? '';
+    // TODO - place marker on map and show place
   }
 
   handleSkip() {

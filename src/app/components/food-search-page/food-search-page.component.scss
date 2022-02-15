@@ -1,3 +1,6 @@
-.sidebar {
-    // box-shadow: 10px 10px 5px 12px black;
+.main-page {
+    &__map {
+        height: 100vh;
+        width: calc(100vw - 25rem);
+    }
 }
