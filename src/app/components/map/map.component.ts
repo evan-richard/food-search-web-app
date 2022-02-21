@@ -11,10 +11,7 @@ export class MapComponent implements OnInit, OnChanges {
 
   @Input() restaurantList: Restaurant[] = [];
 
-  options: any = {
-    center: { lat: 40.766581, lng: -73.976647 },
-    zoom: 14
-  };
+  options: any;
   overlays: any[] = [];
   infoWindow: any;
 
@@ -34,6 +31,13 @@ export class MapComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
+    this.options = {
+      center: {
+        lat: this.mapService.currentLat,
+        lng: this.mapService.currentLng
+      },
+      zoom: 14
+    }
   }
 
   ngOnChanges(): void {

@@ -14,6 +14,10 @@ const loader = new Loader({
 })
 export class MapService {
 
+  currentLat: number = 0.0;
+  currentLng: number = 0.0;
+  currentCity: string = '';
+
   isMapServiceReady(): Observable<boolean> {
     let isServiceReady = new Subject<boolean>();
 

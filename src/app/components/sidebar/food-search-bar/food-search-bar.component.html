@@ -1,13 +1,13 @@
-<section class="container" fxLayout="column" fxLayoutGap="0.2rem">
+<section class="food-search-bar" fxLayout="column" fxLayoutGap="0.2rem">
     <label>Enter a food item</label>
-    <article fxLayout="row" fxLayoutGap="1rem">
-        <p-autoComplete class="container__text-field"
+    <article fxLayout="row" fxLayoutGap="2rem">
+        <p-autoComplete class="food-search-bar__text-field"
             [(ngModel)]="searchText"
             [suggestions]="foodItemNamesList"
             (completeMethod)="handleAutocomplete()"
         ></p-autoComplete>
         <p-button label="Search"
-            class="search-button"
+            class="food-search-bar__search-button"
             [loading]="isLoading"
             (onClick)="handleSearch()">
         </p-button>

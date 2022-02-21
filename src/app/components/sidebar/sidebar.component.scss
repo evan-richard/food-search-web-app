@@ -1,5 +1,19 @@
-.container {
+.sidebar {
     height: 100%;
     width: 25rem;
     margin: 2rem 0;
+
+    &__footer {
+        margin: 0 1rem;
+    }
+
+    &__location {
+        color: #1b7fd1;
+        margin: auto 0;
+
+        &:hover {
+            cursor: pointer;
+            opacity: .7;
+        }
+    }
 }
