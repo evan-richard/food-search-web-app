@@ -2,7 +2,9 @@
     <app-food-search-bar (onSearch)="handleSearch($event)"></app-food-search-bar>
     <app-restaurant-list [restaurantList]="restaurantList"></app-restaurant-list>
     <article class="sidebar__footer" fxLayout="row" fxLayoutAlign="space-between">
-        <div class="sidebar__location">{{ mapService.currentCity }}</div>
+        <div class="sidebar__location" (mouseup)="handleLocationTouch()">
+            {{ mapService.currentCity }}
+        </div>
         <p-button label="Make a Recommendation"
             class="sidebar__recommendation-button"
             (onClick)="handleShowRecommendationPanel()">

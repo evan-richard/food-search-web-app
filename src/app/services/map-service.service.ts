@@ -31,7 +31,7 @@ export class MapService {
   // TODO: Basically, we want to save a "place" (placeId) when a user specifies they have a good food item.
   // Then, when another user is looking for that food item, we can return the list of sorted
   // places and set markers for the top 5 closest ones.
-  getRestaurantsFromQuery(searchText: string): Observable<google.maps.places.PlaceResult[]> {
+  getPlacesFromQuery(searchText: string): Observable<google.maps.places.PlaceResult[]> {
     let results = new Subject<google.maps.places.PlaceResult[]>();
     var request = {
       query: searchText,

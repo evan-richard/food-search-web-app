@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DialogService } from 'primeng/dynamicdialog';
+import { LocationOverlayComponent } from '../location-overlay/location-overlay.component';
 import { RecommendationOverlayComponent } from '../recommendation-overlay/recommendation-overlay.component';
 
 import {APIService, Comment, FoodItem, ModelCommentFilterInput, Restaurant} from "src/app/services";
@@ -39,6 +40,13 @@ export class FoodSearchPageComponent implements OnInit {
     const ref = this.dialogService.open(RecommendationOverlayComponent, {
         header: 'Make a Recommendation',
         width: '70%'
+    });
+  }
+
+  showLocationOverlay() {
+    const ref = this.dialogService.open(LocationOverlayComponent, {
+        header: 'Change Location',
+        width: '40%'
     });
   }
 

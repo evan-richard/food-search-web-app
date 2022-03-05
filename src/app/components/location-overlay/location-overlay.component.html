@@ -1,0 +1,21 @@
+<p class="location-overlay__paragraph">Try searching for a city or zip code</p>
+<p-autoComplete
+    [(ngModel)]="selectedLocationStr"
+    [suggestions]="locationSearchResults"
+    [forceSelection]="true"
+    [delay]="1000"
+    (completeMethod)="handleLocationSearch($event)"
+    (onSelect)="handleLocationSelect($event)"
+>
+    <ng-template let-place pTemplate="item">
+        <div class="location-overlay__autocomplete-place-address">{{ place.formatted_address ?? '' }}</div>
+    </ng-template>
+</p-autoComplete>
+<div class="location-overlay__spacer"></div>
+<article fxLayout="row">
+    <span fxFlex></span>
+    <p-button label="Save"
+        class="location-overlay__save-button"
+        (onClick)="handleSave()">
+    </p-button>
+</article>

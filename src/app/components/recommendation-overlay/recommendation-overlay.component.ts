@@ -15,7 +15,7 @@ export class RecommendationOverlayComponent implements OnInit, OnDestroy {
   restaurantSearchResults: google.maps.places.PlaceResult[] = [];
 
   handleRestaurantSearch(event: any) {
-    this.mapService.getRestaurantsFromQuery(event.query)
+    this.mapService.getPlacesFromQuery(event.query)
       .pipe(takeWhile(() => this.isComponentAlive))
       .subscribe(results => {
         this.restaurantSearchResults = results;

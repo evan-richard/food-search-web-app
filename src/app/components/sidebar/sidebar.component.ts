@@ -12,6 +12,7 @@ export class SidebarComponent implements OnInit {
   @Input() restaurantList: Restaurant[] = [];
   @Output() onSearch: EventEmitter<FoodItem> = new EventEmitter<FoodItem>();
   @Output() onShowRecommendationPanel = new EventEmitter();
+  @Output() onShowLocationPanel = new EventEmitter();
 
   handleSearch(foodItem: FoodItem) {
     this.onSearch.emit(foodItem);
@@ -19,6 +20,10 @@ export class SidebarComponent implements OnInit {
 
   handleShowRecommendationPanel() {
     this.onShowRecommendationPanel.emit();
+  }
+
+  handleLocationTouch() {
+    this.onShowLocationPanel.emit();
   }
 
   constructor(public mapService: MapService) {
