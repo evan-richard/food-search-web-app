@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 
 import { MapService, Restaurant } from 'src/app/services';
 
@@ -10,9 +10,10 @@ import { MapService, Restaurant } from 'src/app/services';
 export class MapComponent implements OnInit, OnChanges {
 
   @Input() restaurantList: Restaurant[] = [];
+  @Input() overlays: any[] = [];
+  @Output() onMapReady: EventEmitter<any> = new EventEmitter();
 
   options: any;
-  overlays: any[] = [];
   infoWindow: any;
 
   handleOverlayClick(event: any) {
@@ -24,8 +25,7 @@ export class MapComponent implements OnInit, OnChanges {
         this.infoWindow.open(event.map, event.overlay);
         event.map.setCenter(event.overlay.getPosition());
     }
-}
-
+  }
 
   constructor(public mapService: MapService) {
   }

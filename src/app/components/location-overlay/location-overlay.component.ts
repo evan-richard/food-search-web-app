@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { takeWhile } from 'rxjs/operators';
+import { filter, take, takeWhile } from 'rxjs/operators';
 import { MapService } from 'src/app/services';
 
 @Component({
@@ -11,8 +11,8 @@ export class LocationOverlayComponent implements OnInit, OnDestroy {
 
   isComponentAlive: boolean = false;
   selectedLocationStr: string = '';
-  selectedLocation?: google.maps.places.PlaceResult;
-  locationSearchResults: google.maps.places.PlaceResult[] = [];
+  selectedLocation?: google.maps.places.AutocompletePrediction;
+  locationSearchResults: google.maps.places.AutocompletePrediction[] = [];
 
   handleLocationSearch(event: any) {
     this.mapService.getPlacesFromQuery(event.query)
@@ -22,15 +22,19 @@ export class LocationOverlayComponent implements OnInit, OnDestroy {
       });
   }
 
-  handleLocationSelect(event: google.maps.places.PlaceResult) {
-    this.selectedLocationStr = `${event.formatted_address}`;
+  handleLocationSelect(event: google.maps.places.AutocompletePrediction) {
+    this.selectedLocationStr = `${event.description}`;
     this.selectedLocation = event;
   }
 
   handleSave() {
-    localStorage.setItem('currentLat', this.selectedLocation?.geometry?.location?.lat().toString() ?? '');
-    localStorage.setItem('currentLng', this.selectedLocation?.geometry?.location?.lng().toString() ?? '');
-    localStorage.setItem('currentCity', this.selectedLocation?.formatted_address ?? '');
+    this.mapService.getPlaceByPlaceId(this.selectedLocation?.place_id).pipe(
+      take(1)
+    ).subscribe((place: google.maps.GeocoderResult) => {
+      localStorage.setItem('currentLat', place.geometry?.location?.lat().toString() ?? '');
+      localStorage.setItem('currentLng', place.geometry?.location?.lng().toString() ?? '');
+      localStorage.setItem('currentCity', place.formatted_address ?? '');
+    });
   }
 
   constructor(private mapService: MapService) { }

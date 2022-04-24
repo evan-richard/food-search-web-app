@@ -14,6 +14,12 @@ import {DynamicDialogModule} from 'primeng/dynamicdialog';
 import {GMapModule} from 'primeng/gmap';
 import {InputTextModule} from 'primeng/inputtext';
 import { IonicModule } from '@ionic/angular';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { FoodItemEffects } from './store/food-item/food-item.effects';
+import { reducers } from './reducers';
+import { RestaurantEffects } from './store/restaurant/restaurant.effects';
+import { RecommendationEffects } from './store/recommendation/recommendation.effects';
 
 @NgModule({
   declarations: [
@@ -39,7 +45,13 @@ import { IonicModule } from '@ionic/angular';
     DynamicDialogModule,
     GMapModule,
     InputTextModule,
-    IonicModule.forRoot()
+    IonicModule.forRoot(),
+    StoreModule.forRoot(reducers),
+    EffectsModule.forRoot([
+      FoodItemEffects,
+      RestaurantEffects,
+      RecommendationEffects
+    ]),
   ],
   providers: [],
   bootstrap: [AppComponent],

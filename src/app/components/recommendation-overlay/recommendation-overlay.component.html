@@ -11,7 +11,7 @@
         <span class="p-fluid recommendation-overlay__autocomplete" fxLayout="column" fxLayoutGap="1rem">
             <p class="recommendation-overlay__paragraph">Search for a restaurant</p>
             <p-autoComplete
-                [(ngModel)]="selectedRestaurant"
+                [(ngModel)]="selectedRestaurantName"
                 [suggestions]="restaurantSearchResults"
                 [forceSelection]="true"
                 [delay]="1000"
@@ -24,7 +24,7 @@
                 </ng-template>
             </p-autoComplete>
         </span>
-        <app-map class="recommendation-overlay__map"></app-map>
+        <app-map class="recommendation-overlay__map" [overlays]="markedRestaurant ? [markedRestaurant] : []" (onMapReady)="setMap($event)"></app-map>
     </article>
     <article fxLayout="row" fxLayoutGap="2rem">
         <span fxFlex></span>

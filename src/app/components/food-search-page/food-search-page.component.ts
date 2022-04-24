@@ -3,7 +3,9 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { LocationOverlayComponent } from '../location-overlay/location-overlay.component';
 import { RecommendationOverlayComponent } from '../recommendation-overlay/recommendation-overlay.component';
 
-import {APIService, Comment, FoodItem, ModelCommentFilterInput, Restaurant} from "src/app/services";
+import { Comment, FoodItem, ModelCommentFilterInput, Restaurant} from "src/app/services";
+import { FoodItemFacadeService } from 'src/app/store';
+import { filter, takeWhile } from 'rxjs/operators';
 
 @Component({
   selector: 'app-food-search-page',
@@ -17,23 +19,21 @@ export class FoodSearchPageComponent implements OnInit {
 
   handleSearch(foodItem: FoodItem) {
     console.log(`Searching for ${foodItem.name}`);
-    this.api.GetFoodItem(foodItem.id).then((event) => {
+    let searching: boolean = true;
+    this.foodItemService.searchedFoodItem$.pipe(
+      takeWhile(() => searching),
+      filter(searchResult => searchResult !== undefined && searchResult?.name === foodItem?.name)
+    ).subscribe((searchResult) => {
       console.log(`Food item:`);
-      console.log((event as FoodItem));
+      console.log(searchResult);
       console.log("Recommended restaurants:");
-      console.log((event as FoodItem).recommendedRestaurants?.items);
-      this.restaurantList = (event as FoodItem).recommendedRestaurants!.items!.map(result => {
-        return {
-          address: result!.restaurant.address,
-          googlePlaceId: result!.restaurant.googlePlaceId,
-          id: result!.restaurant.id,
-          lat: result!.restaurant.lat,
-          lng: result!.restaurant.lng,
-          name: result!.restaurant.name,
-          rank: result!.restaurant.rank
-        } as Restaurant;
-      });
+      console.log(searchResult!.recommendedRestaurants!.items);
+      this.restaurantList = searchResult!.recommendedRestaurants!.items!.map(recommendation =>
+        recommendation!.restaurant as Restaurant
+      );
+      searching = false;
     });
+    this.foodItemService.getFoodItem(foodItem.id);
   }
 
   showRecommendationOverlay() {
@@ -50,7 +50,7 @@ export class FoodSearchPageComponent implements OnInit {
     });
   }
 
-  constructor(private dialogService: DialogService, private api: APIService) { }
+  constructor(private dialogService: DialogService, private foodItemService: FoodItemFacadeService) { }
 
   ngOnInit(): void {
     // const commentFilter: ModelCommentFilterInput = {

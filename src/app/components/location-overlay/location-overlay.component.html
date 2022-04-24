@@ -3,12 +3,12 @@
     [(ngModel)]="selectedLocationStr"
     [suggestions]="locationSearchResults"
     [forceSelection]="true"
-    [delay]="1000"
+    [delay]="300"
     (completeMethod)="handleLocationSearch($event)"
     (onSelect)="handleLocationSelect($event)"
 >
     <ng-template let-place pTemplate="item">
-        <div class="location-overlay__autocomplete-place-address">{{ place.formatted_address ?? '' }}</div>
+        <div class="location-overlay__autocomplete-place-address">{{ place.description ?? '' }}</div>
     </ng-template>
 </p-autoComplete>
 <div class="location-overlay__spacer"></div>

@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { takeWhile } from 'rxjs/operators';
-import { APIService, CreateFoodItemInput, CreateFoodItemRecommendationInput, CreateRestaurantInput, MapService, Restaurant } from 'src/app/services';
+import { CreateRestaurantInput, FoodItem, MapService, Restaurant } from 'src/app/services';
+import { RecommendationFacadeService } from 'src/app/store';
 
 @Component({
   selector: 'app-recommendation-overlay',
@@ -11,73 +12,63 @@ export class RecommendationOverlayComponent implements OnInit, OnDestroy {
 
   isComponentAlive: boolean = false;
   foodSearchText: string = 'Pizza';
-  selectedRestaurant: string = '';
+  selectedRestaurant?: google.maps.places.PlaceResult;
+  selectedRestaurantName: string = '';
   restaurantSearchResults: google.maps.places.PlaceResult[] = [];
+  markedRestaurant?: google.maps.Marker;
+  map?: google.maps.Map;
+
+  setMap(event: any) {
+    this.map = event.map;
+  }
 
   handleRestaurantSearch(event: any) {
-    this.mapService.getPlacesFromQuery(event.query)
+    this.mapService.getRestaurantsFromQuery(event.query)
       .pipe(takeWhile(() => this.isComponentAlive))
       .subscribe(results => {
         this.restaurantSearchResults = results;
       });
   }
 
-  handleRestaurantSelect(event: any) {
-    this.selectedRestaurant = event.name ?? '';
-    // TODO - place marker on map and show place
+  handleRestaurantSelect(event: google.maps.places.PlaceResult) {
+    this.selectedRestaurant = event;
+    this.selectedRestaurantName = event.name ?? '';
+    this.markedRestaurant = new google.maps.Marker({
+      position: {
+        lat: event.geometry?.location?.lat() ?? 0,
+        lng: event.geometry?.location?.lng() ?? 0
+      },
+      title: event.name
+    });
+    let bounds = new google.maps.LatLngBounds();
+    bounds.extend(this.markedRestaurant.getPosition()!);
+    this.map?.fitBounds(bounds);
+    this.map?.setZoom(14);
   }
 
   handleSkip() {
   }
 
   handleSave() {
-    // CREATE A NEW FOOD ITEM
-    // const foodItem: CreateFoodItemInput = {
-    //   name: 'fried-chicken-sandwich'
-    // };
-    // this.api
-    //   .CreateFoodItem(foodItem)
-    //   .then((event) => {
-    //     console.log("food item created!");
-    //   })
-    //   .catch((e) => {
-    //     console.log("error creating food item...", e);
-    //   });
-
-    // CREATE A NEW RESTAURANT
-    // const restaurant: CreateRestaurantInput = {
-    //   name: 'Noodle Box',
-    //   address: '1234 Address St Analytica, VA',
-    //   rank: 0,
-    //   lat: 40.766581,
-    //   lng: -73.976647,
-    //   googlePlaceId: 'mock-place-id'
-    // };
-    // this.api
-    //   .CreateRestaurant(restaurant)
-    //   .then((event) => {
-    //     console.log("restaurant created!");
-    //   })
-    //   .catch((e) => {
-    //     console.log("error creating restaurant...", e);
-    //   });
-
-    // LINK RESTAURANT AND FOOD ITEM
-    // const foodItemRecommendation: CreateFoodItemRecommendationInput = {
-    //   foodItemID: "",
-    //   restaurantID: ""
-    // };
-    // this.api
-    //   .CreateFoodItemRecommendation(foodItemRecommendation)
-    //   .then((event) => {
-    //     console.log("recommendation mapping created!");
-    //   })
-    //   .catch((e) => {
-    //     console.log("error creating recommendation mapping...", e);
-    //   });
+    // TODO: Fix this shiz, ids are only returned when the restaurant or food item is newly created. Otherwise the id will be wrong.
+    const restaurant: CreateRestaurantInput = {
+      name: this.selectedRestaurant?.name!,
+      address: this.selectedRestaurant?.formatted_address!,
+      rank: 0,
+      lat: this.selectedRestaurant?.geometry?.location?.lat()!,
+      lng: this.selectedRestaurant?.geometry?.location?.lng()!,
+      googlePlaceId: this.selectedRestaurant?.place_id!
+    };
+    this.recommendationFacadeService.createRecommendation(
+      this.foodSearchText,
+      restaurant
+    );
   }
 
-  constructor(private mapService: MapService, private api: APIService) { }
+  constructor(
+    private mapService: MapService,
+    private recommendationFacadeService: RecommendationFacadeService
+  ) { }
 
   ngOnInit(): void {
     this.isComponentAlive = true;

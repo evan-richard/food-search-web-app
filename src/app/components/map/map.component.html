@@ -3,4 +3,5 @@
     [overlays]="overlays"
     [style]="{'height': '100%', 'width': '100%'}"
     (onOverlayClick)="handleOverlayClick($event)"
+    (onMapReady)="onMapReady.emit($event)"
 ></p-gmap>

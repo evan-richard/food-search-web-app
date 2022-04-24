@@ -1,1 +1,1 @@
-export * from "./lowercase-no-dashses.helper";
+export * from "./lowercase-no-dashes.helper";
